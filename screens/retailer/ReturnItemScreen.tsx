@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
-import { Button, Card, List, Paragraph, Title } from 'react-native-paper';
+import { Image, StyleSheet } from 'react-native';
+import { Avatar, Button, Card, List, Paragraph, Title } from 'react-native-paper';
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
 import { RootTabScreenProps } from '../../types';
@@ -10,8 +10,8 @@ export default class ReturnItemScreen extends Component {
     constructor(props: Object) {
         super(props);
 
-
-        this.state = {}
+        this.state = { name: this.props.route.params.params.name, status: this.props.route.params.params.status }
+        console.log(this.props.route.params.params.name)
 
     }
     render() {
@@ -19,9 +19,9 @@ export default class ReturnItemScreen extends Component {
             <View>
                 <Card>
                     <Card.Content>
-                        <Title>Bob Jones Return</Title>
+                        <Title>{this.state.name} Return</Title>
                         <Paragraph>
-                            <Text style={{ color: '#FF0000' }}>Status: In transit</Text>
+                            {this.state.status}
                         </Paragraph>
                     </Card.Content>
                 </Card>
@@ -33,14 +33,24 @@ export default class ReturnItemScreen extends Component {
                     <List.Subheader>
                         Items in return:
                     </List.Subheader>
-                    <List.Item onPress={() => this.props.navigation.navigate('returnItem')} title="Crewneck T-Shirt"
-                        description={<Text>SKU: 156897586</Text>} left={() => <List.Icon icon="tshirt-crew" />}
+                    <List.Item onPress={() => this.props.navigation.navigate('itemDetail', {
+                        params: {
+                            clothingName: 'Crew T-Shirt', clothingImage:
+                                <Image style={{ width: 100, height: 100 }} source={require(`../../assets/images/retailer/tshirt.jpeg`)} />
+                        }
+                    })} title="Crewneck T-Shirt"
+                        description={<Text>SKU: 156897586</Text>} left={() => <Avatar.Image source={require(`../../assets/images/retailer/tshirt.jpeg`)} />}
                         right={() => <List.Icon icon="information" />}
                     />
-                    <List.Item
-                        title="Jim's Return"
+                    <List.Item onPress={() => this.props.navigation.navigate('itemDetail', {
+                        params: {
+                            clothingName: 'Dress Pants', clothingImage:
+                                <Image style={{ width: 100, height: 100 }} source={require(`../../assets/images/retailer/pants.jpeg`)} />
+                        }
+                    })}
+                        title="Dress Pants"
                         description={<Text>SKU: 986654789</Text>}
-                        left={() => <List.Icon color="#000" icon="redhat" />}
+                        left={() => <Avatar.Image source={require(`../../assets/images/retailer/pants.jpeg`)} />}
                         right={() => <List.Icon icon="information" />}
                     />
 
