@@ -1,11 +1,12 @@
 import { Component } from 'react';
-import {StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
+import EditScreenInfo from '../../components/EditScreenInfo';
+import { Text, View } from '../../components/Themed';
+import { RootTabScreenProps } from '../../types';
 
-export default class DriverHome extends Component {
+
+export default class ClientHome extends Component {
   render() {
     return (
       <View>

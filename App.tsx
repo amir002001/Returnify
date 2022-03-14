@@ -4,10 +4,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
-import TabOneScreen from './screens/DriverHome';
-import TabTwoScreen from './screens/ClientHome';
-import RetailerHome from './screens/RetailerHome';
-import DriverHome from './screens/DriverHome';
+import TabOneScreen from './screens/driver/DriverHome';
+import TabTwoScreen from './screens/client/ClientHome';
+import RetailerHome from './screens/retailer/RetailerHome';
+import DriverHome from './screens/driver/DriverHome';
 import AppHome from './screens/AppHome';
 
 const Stack = createNativeStackNavigator();
