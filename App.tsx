@@ -12,6 +12,8 @@ import AppHome from './screens/AppHome';
 import RetailerListScreen from './screens/retailer/ReturnListScreen'
 import ReturnItemScreen from './screens/retailer/ReturnItemScreen'
 import ItemDetailScreen from './screens/retailer/ItemDetailScreen'
+import DisputeScreen from './screens/retailer/DisputeScreen'
+
 
 const Stack = createNativeStackNavigator();
 
@@ -29,10 +31,12 @@ export default function App() {
             <Stack.Screen name="appHome" component={AppHome} />
             <Stack.Screen name="clientHome" component={TabTwoScreen} />
             <Stack.Screen name="driverHome" component={DriverHome} />
-            <Stack.Screen name="retailerHome" component={RetailerHome} />
             <Stack.Screen name="retailerList" component={RetailerListScreen} />
             <Stack.Screen name="returnItem" component={ReturnItemScreen} />
             <Stack.Screen name="itemDetail" component={ItemDetailScreen} />
+            <Stack.Screen name="dispute" component={DisputeScreen} />
+
+
 
 
           </Stack.Navigator>

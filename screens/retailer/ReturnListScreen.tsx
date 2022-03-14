@@ -20,29 +20,29 @@ export default class ReturnListScreen extends Component {
 
 
                 <List.Section>
-                    <List.Item onPress={() => this.props.navigation.navigate('returnItem', { params: { name: 'Bob Jones', status: <Text style={{ color: '#00DD00' }}>Status: Delivered</Text> } })} title="Bob's Return"
+                    <List.Item onPress={() => this.props.navigation.navigate('returnItem', { params: { name: 'Bob Jones', orderNo: '#33233', status: <Text style={{ color: '#00DD00' }}>Status: Delivered</Text> } })} title="Bob's Return"
                         description={<Text style={{ color: '#00DD00' }}>Status: Delivered</Text>} left={() => <List.Icon icon="account-circle" />}
                         right={() => <List.Icon icon="information" />}
                     />
-                    <List.Item onPress={() => this.props.navigation.navigate('returnItem', { params: { name: 'Jim Jones', status: <Text style={{ color: '#FEBE00' }}>Status: Picked up</Text> } })}
+                    <List.Item onPress={() => this.props.navigation.navigate('returnItem', { params: { name: 'Jim Jones', orderNo: '#33233', status: <Text style={{ color: '#FEBE00' }}>Status: Picked up</Text> } })}
                         title="Jim's Return"
                         description={<Text style={{ color: '#FEBE00' }}>Status: Picked up</Text>}
                         left={() => <List.Icon color="#000" icon="account-circle" />}
                         right={() => <List.Icon icon="information" />}
                     />
-                    <List.Item onPress={() => this.props.navigation.navigate('returnItem', { params: { name: 'Jan Jones', status: <Text style={{ color: '#FF0000' }}>Status: In transit</Text> } })}
+                    <List.Item onPress={() => this.props.navigation.navigate('returnItem', { params: { name: 'Jan Jones', orderNo: '#33233', status: <Text style={{ color: '#FF0000' }}>Status: In transit</Text> } })}
                         title="Jan's Return"
                         description={<Text style={{ color: '#FF0000' }}>Status: In transit</Text>}
                         left={() => <List.Icon color="#000" icon="account-circle" />}
                         right={() => <List.Icon icon="information" />}
                     />
-                    <List.Item onPress={() => this.props.navigation.navigate('returnItem', { params: { name: 'Alex Jones', status: <Text style={{ color: '#FEBE00' }}>Status: Picked up</Text> } })}
+                    <List.Item onPress={() => this.props.navigation.navigate('returnItem', { params: { name: 'Alex Jones', orderNo: '#33233', status: <Text style={{ color: '#FEBE00' }}>Status: Picked up</Text> } })}
                         title="Alex's Return"
                         description={<Text style={{ color: '#FEBE00' }}>Status: Picked up</Text>}
                         left={() => <List.Icon color="#000" icon="account-circle" />}
                         right={() => <List.Icon icon="information" />}
                     />
-                    <List.Item onPress={() => this.props.navigation.navigate('returnItem', { params: { name: 'Ron Jones', status: <Text style={{ color: '#FF0000' }}>Status: In transit</Text> } })}
+                    <List.Item onPress={() => this.props.navigation.navigate('returnItem', { params: { name: 'Ron Jones', orderNo: '#33233', status: <Text style={{ color: '#FF0000' }}>Status: In transit</Text> } })}
                         title="Ron's Return"
                         description={<Text style={{ color: '#FF0000' }}>Status: In transit</Text>}
                         left={() => <List.Icon color="#000" icon="account-circle" />}

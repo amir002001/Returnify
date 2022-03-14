@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet } from 'react-native';
-import { Avatar, Button, Card, List, Paragraph, Title } from 'react-native-paper';
+import { Avatar, Card, List, Paragraph, Title, Modal, Portal, Button, Provider } from 'react-native-paper';
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
 import { RootTabScreenProps } from '../../types';
@@ -10,7 +10,7 @@ export default class ReturnItemScreen extends Component {
     constructor(props: Object) {
         super(props);
 
-        this.state = { name: this.props.route.params.params.name, status: this.props.route.params.params.status }
+        this.state = { name: this.props.route.params.params.name, status: this.props.route.params.params.status, orderNumber: this.props.route.params.params.orderNo, visible: false };
         console.log(this.props.route.params.params.name)
 
     }
@@ -22,6 +22,9 @@ export default class ReturnItemScreen extends Component {
                         <Title>{this.state.name} Return</Title>
                         <Paragraph>
                             {this.state.status}
+                        </Paragraph>
+                        <Paragraph>
+                            Order {this.state.orderNumber}
                         </Paragraph>
                     </Card.Content>
                 </Card>
@@ -66,7 +69,21 @@ export default class ReturnItemScreen extends Component {
                     onPress={() => this.props.navigation.navigate('appHome')}>
                     Confirm Return
                 </Button>
-            </View>
+
+                <Button
+                    // onPress={this.setState({ visible: true })}>
+                    onPress={() => this.props.navigation.navigate('dispute', { params: { orderNo: this.state.orderNumber } })}>
+                    Open Disupte
+                </Button>
+
+                {/* <Provider>
+                    <Portal>
+                        <Modal visible={this.state.visible} onDismiss={this.setState({ visible: false })}>
+                            <Text>Example Modal.  Click outside this area to dismiss.</Text>
+                        </Modal>
+                    </Portal>
+                </Provider> */}
+            </View >
         );
     }
 }
