@@ -1,9 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
+import TabOneScreen from './screens/DriverHome';
+import TabTwoScreen from './screens/ClientHome';
+import RetailerHome from './screens/RetailerHome';
+import DriverHome from './screens/DriverHome';
+import AppHome from './screens/AppHome';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -14,8 +21,15 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
+        <NavigationContainer>
+        <Stack.Navigator>
+        <Stack.Screen name="appHome" component={AppHome} />
+        <Stack.Screen name="clientHome" component={TabTwoScreen} />
+        <Stack.Screen name="driverHome" component={DriverHome} />
+        <Stack.Screen name="retailerHome" component={RetailerHome} />
+
+      </Stack.Navigator>
+        </NavigationContainer>
       </SafeAreaProvider>
     );
   }
