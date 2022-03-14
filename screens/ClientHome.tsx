@@ -1,5 +1,5 @@
-import { Button, StyleSheet } from 'react-native';
-
+import { StyleSheet } from 'react-native';
+import { Button } from 'react-native-paper';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
@@ -10,8 +10,10 @@ export default function ClientHome({ navigation }: RootTabScreenProps<'TabOne'>)
       <Text>Tab One</Text>
       <View lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="/screens/TabOneScreen.tsx" />
-      <Button title="Go back"
-        onPress={() => navigation.navigate('appHome')}></Button>
+      <Button
+        onPress={() => navigation.navigate('appHome')}>
+            Go back
+        </Button>
     </View>
   );
 }

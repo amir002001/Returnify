@@ -1,5 +1,5 @@
-import { Button, StyleSheet } from 'react-native';
-
+import { StyleSheet } from 'react-native';
+import { Button } from 'react-native-paper';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
@@ -10,12 +10,12 @@ export default function AppHome({ navigation }: RootTabScreenProps<'TabOne'>) {
       <Text >Tab One</Text>
       <View lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="/screens/TabOneScreen.tsx" />
-      <Button title="DRIVER"
-        onPress={() => navigation.navigate('driverHome')}></Button>
-        <Button title="RETAILER"
-        onPress={() => navigation.navigate('retailerHome')}></Button>
-        <Button title="CLIENT"
-        onPress={() => navigation.navigate('clientHome')}></Button>
+      <Button
+        onPress={() => navigation.navigate('driverHome')}>DRIVER</Button>
+        <Button
+        onPress={() => navigation.navigate('retailerHome')}>RETAILER</Button>
+        <Button
+        onPress={() => navigation.navigate('clientHome')}>CLIENT</Button>
     </View>
   );
 }
