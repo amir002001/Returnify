@@ -17,8 +17,6 @@ export default class RetailerHome extends Component {
   render() {
     return (
       <View>
-        <Text>Tab One</Text>
-
         <Button
           onPress={() => this.props.navigation.navigate('retailerList')}>
           Return List
