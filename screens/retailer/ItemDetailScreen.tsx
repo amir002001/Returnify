@@ -9,7 +9,7 @@ import {
   Title,
 } from "react-native-paper";
 import Icon from "react-native-paper/lib/typescript/components/Icon";
-import { ItemDetailProps } from "../../types";
+import { ItemDetailProps } from "../NavigationTypes";
 
 const ItemDetailScreen = ({navigation, route}: ItemDetailProps) => {
   return (

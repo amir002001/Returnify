@@ -8,7 +8,7 @@ import {
   Title,
   Button,
 } from "react-native-paper";
-import { ReturnItemProps } from "../../types";
+import { ReturnItemProps } from "../NavigationTypes";
 
 const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
   const [visible, setVisible] = useState(false);

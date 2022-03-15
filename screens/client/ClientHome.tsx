@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, View, ScrollView, TouchableHighlight, Image } from "react-native";
-import { Button, Title } from "react-native-paper";
-import { ClientHomeProps } from "../../types";
+import { Component } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { Button } from "react-native-paper";
+import { ClientHomeProps } from "../NavigationTypes";
 
 
 const ClientHome = ({ navigation }: ClientHomeProps) => {

@@ -8,7 +8,7 @@ import utilities from "./tailwind.json";
 import DriverHome from "./screens/driver/DriverHome";
 import AppHome from "./screens/AppHome";
 import DisputeScreen from "./screens/retailer/DisputeScreen";
-import { RootStackParamList } from "./types";
+import { RootStackParamList } from "./screens/NavigationTypes";
 import ClientHome from "./screens/client/ClientHome";
 import ReturnListScreen from "./screens/retailer/ReturnListScreen";
 import ItemDetailScreen from "./screens/retailer/ItemDetailScreen";
