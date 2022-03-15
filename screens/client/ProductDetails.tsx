@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, Text, View } from "react-native";
+import { Image, Text, View, StyleSheet } from "react-native";
 import {
   Avatar,
   Card,
@@ -15,86 +15,96 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
   const [orderNumber, setOrderNumber] = useState("12345");
   return (
     <View>
-      <Card>
-        <Card.Content>
-          <Title>{route.params.name} Return</Title>
-          <Paragraph>{route.params.status}</Paragraph>
-          <Paragraph>Order {/*TODO*/}</Paragraph>
-        </Card.Content>
-      </Card>
+        <Title style={{ margin: 5, marginTop: 15, marginLeft: 15}}>Order Summary</Title>
+        <View>
 
-      <Text>Date of return:</Text>
-      <Text>December 23, 2021</Text>
-
-      <List.Section>
-        {/* TODO <List.Subheader>Items in return:</List.Subheader> */}
-        <List.Item
-          onPress={() =>
-            navigation.navigate("ItemDetail", {
-              clothingName: "Crew T-Shirt",
-              clothingImage: (
-                <Image
-                  style={{ width: 100, height: 100 }}
-                  source={require(`../../assets/images/retailer/tshirt.jpeg`)}
-                />
-              ),
-            })
-          }
-          title="Crewneck T-Shirt"
-          description={<Text>SKU: 156897586</Text>}
-          left={() => (
-            <Avatar.Image
-              source={require(`../../assets/images/retailer/tshirt.jpeg`) /* TODO change for normal image */} 
-            />
-          )}
-          right={() => <List.Icon icon="information" />}
-        />
-        <List.Item
-          onPress={() =>
-            navigation.navigate("ItemDetail", {
-              clothingName: "Dress Pants",
-              clothingImage: (
-                <Image
-                  style={{ width: 100, height: 100 }}
-                  source={require(`../../assets/images/retailer/pants.jpeg`)}
-                />
-              ),
-            })
-          }
-          title="Dress Pants"
-          description={<Text>SKU: 986654789</Text>}
-          left={() => (
-            <Avatar.Image
-              source={require(`../../assets/images/retailer/pants.jpeg`)}
-            />
-          )}
-          right={() => <List.Icon icon="information" />}
-        />
-      </List.Section>
-
-      <Text>Reason for return:</Text>
-      <Text style={{ fontStyle: "italic" }}>
-        "The clothes did not fit my body shape. The clothes were too tight."
-      </Text>
-
-      <Text>Expected time arrival:</Text>
-      <Text style={{ fontWeight: "bold" }}>
-        2:55 PM Thursday Feburary 10, 2022
-      </Text>
-
-      <Button onPress={() => navigation.navigate("AppHome")}>
-        Confirm Return
-      </Button>
-
-      <Button
-        onPress={() => {
-          navigation.navigate("Dispute", { orderNumber });
-        }}
-      >
-        Open Disupte
-      </Button>
+        </View>
+        <View
+            style={style.touchableOpacity}
+          >
+            <Title style={{ margin: 5, marginTop: 15, marginLeft: 15}}>Overview:</Title>
+            <View style={style.textContainer}>
+            <View style={{width: 'auto'}}>
+                <Title>H&M</Title>
+                <Text style={{fontWeight: 'bold'}}>Total: $73.59</Text>
+                <Text>Purchased: March 12th 2022</Text>
+                <Text style={{ marginBottom: 20}}>2 items</Text>
+                </View>
+                    <View
+                    style={{
+                        borderBottomColor: 'black',
+                        borderBottomWidth: 1,
+                    }}
+                />      
+            </View>
+            <Title style={{ margin: 5, marginTop: 15, marginLeft: 15}}>Items:</Title>
+            <View style={style.textContainer}>
+                <View style={{ margin: 5, marginTop: 15, marginBottom: 20, flexDirection: "row"}}>
+                    <Image
+                        source={require("../../assets/images/retailer/tshirt.jpeg")}
+                        style={{width: 70, height: 70, marginRight: 20, borderRadius: '100%', shadowOffset: {width: 0, height: 1},shadowOpacity: 0.80,shadowRadius: 4.84}}
+                    />
+                    <View style={{width: 'auto'}}>
+                        <Text>Crewneck T-Shirt</Text>
+                        <Text>Size: M</Text>
+                        <Text>Order Number: 12363632718</Text>
+                        <Text>$13.59</Text>
+                    </View>
+                </View>
+                     <View
+                        style={{
+                            borderBottomColor: 'black',
+                            borderBottomWidth: 1,
+                        }}
+                    /> 
+                <View style={{ margin: 5, marginTop: 15, flexDirection: "row"}}>
+                    <Image
+                        source={require("../../assets/images/retailer/pants.jpeg")}
+                        style={{width: 70, height: 70, marginRight: 20, borderRadius: '100%', shadowOffset: {width: 0, height: 1},shadowOpacity: 0.80,shadowRadius: 4.84}}
+                    />
+                    <View style={{width: 'auto'}}>
+                        <Text>Black Jeans</Text>
+                        <Text>Size: M</Text>
+                        <Text>Order Number: 12363632718</Text>
+                        <Text>$53.59</Text>
+                    </View>
+                </View>
+                     
+            </View>
+        </View>
     </View>
   );
 };
+
+
+const style = StyleSheet.create({
+    touchableOpacity: {
+        backgroundColor: "white",
+        marginLeft: 10,
+        marginTop: 15,
+        marginRight: 10,
+        textAlign: "center",
+        borderRadius: 10,
+        width: "auto",
+        height:"auto",
+        minHeight: 100,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.20,
+        shadowRadius: 4.84,
+        elevation: 1,
+    },
+    textContainer: {
+        fontFamily: "Arial",
+        fontSize: 20,
+        padding: 12,
+        margin: 0,
+        borderRadius: 10,
+        marginTop: 0,
+    }
+  });
 
 export default ReturnItemScreen

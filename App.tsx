@@ -13,6 +13,8 @@ import ClientHome from "./screens/client/ClientHome";
 import ReturnListScreen from "./screens/retailer/ReturnListScreen";
 import ItemDetailScreen from "./screens/retailer/ItemDetailScreen";
 import ReturnItemScreen from "./screens/retailer/ReturnItemScreen";
+import ProductDetails from "./screens/client/ProductDetails";
+
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -28,6 +30,7 @@ export default function App() {
             <Stack.Screen name="AppHome" component={AppHome} />
             <Stack.Screen name="DriverHome" component={DriverHome} />
             <Stack.Screen name="ClientHome" component={ClientHome} />
+            <Stack.Screen name="OrderDetails" component={ProductDetails} />
             <Stack.Screen name="ReturnList" component={ReturnListScreen} />
             <Stack.Screen name="ReturnItem" component={ReturnItemScreen} />
             <Stack.Screen name="ItemDetail" component={ItemDetailScreen} />
