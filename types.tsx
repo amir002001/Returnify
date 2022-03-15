@@ -1,35 +1,47 @@
-/**
- * Learn more about using TypeScript with React Navigation:
- * https://reactnavigation.org/docs/typescript/
- */
-
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
-  }
-}
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 export type RootStackParamList = {
-  Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  Modal: undefined;
-  NotFound: undefined;
+  AppHome: undefined;
+  DriverHome: undefined;
+  ReturnList: undefined;
+  ReturnItem: {
+    name: string;
+    orderNo: string;
+    status: JSX.Element;
+  };
+  ItemDetail: {
+    clothingName: string;
+    clothingImage: JSX.Element;
+  };
+  Dispute: { orderNumber: string };
+  ClientHome: undefined;
 };
 
-export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
+export type AppHomeProps = NativeStackScreenProps<
   RootStackParamList,
-  Screen
+  "AppHome"
 >;
-
-export type RootTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
-};
-
-export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
-  BottomTabScreenProps<RootTabParamList, Screen>,
-  NativeStackScreenProps<RootStackParamList>
+export type DriverHomeProps = NativeStackScreenProps<
+  RootStackParamList,
+  "DriverHome"
+>;
+export type ReturnListProps = NativeStackScreenProps<
+  RootStackParamList,
+  "ReturnList"
+>;
+export type ReturnItemProps = NativeStackScreenProps<
+  RootStackParamList,
+  "ReturnItem"
+>;
+export type ItemDetailProps = NativeStackScreenProps<
+  RootStackParamList,
+  "ItemDetail"
+>;
+export type DisputeProps = NativeStackScreenProps<
+  RootStackParamList,
+  "Dispute"
+>;
+export type ClientHomeProps = NativeStackScreenProps<
+  RootStackParamList,
+  "ClientHome"
 >;
