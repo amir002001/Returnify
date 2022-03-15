@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { Card, Paragraph, Title, Button, TextInput } from "react-native-paper";
-import { DisputeProps } from "../../types";
+import { DisputeProps } from "../NavigationTypes";
 
 const DisputeScreen = ({ navigation, route }: DisputeProps) => {
   const [orderNumber, setOrderNumber] = useState(route.params.orderNumber); // TODO: typescript

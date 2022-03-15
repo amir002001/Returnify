@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button } from "react-native-paper";
-import { AppHomeProps, RootStackParamList } from "../types";
+import { AppHomeProps, RootStackParamList } from "./NavigationTypes";
 
 const AppHome = ({navigation}: AppHomeProps) => {
   return (
