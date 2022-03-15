@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image } from "react-native";
+import { Image, Text, View } from "react-native";
 import {
   Avatar,
   Card,
@@ -8,8 +8,6 @@ import {
   Title,
   Button,
 } from "react-native-paper";
-import EditScreenInfo from "../../components/EditScreenInfo";
-import { Text, View } from "../../components/Themed";
 import { ReturnItemProps } from "../../types";
 
 const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {

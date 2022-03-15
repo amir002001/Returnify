@@ -1,8 +1,6 @@
 import React, { Component, useState } from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { Card, Paragraph, Title, Button, TextInput } from "react-native-paper";
-import EditScreenInfo from "../../components/EditScreenInfo";
-import { Text, View } from "../../components/Themed";
 import { DisputeProps } from "../../types";
 
 const DisputeScreen = ({ navigation, route }: DisputeProps) => {

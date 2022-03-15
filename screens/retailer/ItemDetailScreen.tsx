@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import {
   Avatar,
   Button,
@@ -9,8 +9,6 @@ import {
   Title,
 } from "react-native-paper";
 import Icon from "react-native-paper/lib/typescript/components/Icon";
-import EditScreenInfo from "../../components/EditScreenInfo";
-import { Text, View } from "../../components/Themed";
 import { ItemDetailProps } from "../../types";
 
 const ItemDetailScreen = ({navigation, route}: ItemDetailProps) => {

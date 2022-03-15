@@ -1,19 +1,19 @@
 
 import { Button } from "react-native-paper";
-import { Text, View } from "../../components/Themed";
 import { DriverHomeProps, RootStackParamList } from "../../types";
 import { useTailwind } from "tailwind-rn";
-import { Image } from "react-native";
+import { Image, Text, View } from "react-native";
 
 
 
 
 
 const DriverHome = ({navigation}: DriverHomeProps) => {
+  const tailwind = useTailwind()
   return (
     <View>
       <Text>Driver Dashboard</Text>
-      <Image width={100} height={100} source={require("../../assets/images/retailer/tshirt.jpeg")}></Image>
+      <Image source={{uri:"https://picsum.photos/200", width:200,height:200 }}/>
       <Button>
         Start
       </Button>

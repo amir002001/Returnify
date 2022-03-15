@@ -1,8 +1,6 @@
 import { Component } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Button, List } from "react-native-paper";
-import EditScreenInfo from "../../components/EditScreenInfo";
-import { Text, View } from "../../components/Themed";
 import { ReturnListProps } from "../../types";
 
 const ReturnListScreen = ({ navigation }: ReturnListProps) => {
