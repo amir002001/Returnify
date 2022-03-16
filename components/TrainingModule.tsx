@@ -7,7 +7,7 @@ const TrainingModule = ({ moduleName, moduleSubtitle, navigation, ...props }: Tr
   const LeftContent = (props: any) => <Avatar.Icon {...props} icon="folder" />
 
   return (
-    <Card onTouchEnd={() => navigation.navigate("AppHome")} {...props}>
+    <Card onTouchEnd={() => navigation.navigate("Module")} {...props}>
     <Card.Title title={moduleName} subtitle={moduleSubtitle} />
     <Card.Content>
     </Card.Content>
