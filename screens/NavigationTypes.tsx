@@ -13,6 +13,10 @@ export type RootStackParamList = {
     clothingName: string;
     clothingImage: JSX.Element;
   };
+  OrderDetails: {
+    clothingName: string;
+    clothingImage: JSX.Element;
+  };
   Dispute: { orderNumber: string };
   ClientHome: undefined;
   ModuleHome: undefined;
@@ -76,3 +80,7 @@ export type AssessmentResultProps = NativeStackScreenProps<
   "AssessmentResult"
 >;
 
+export type OrderDetailsProps = NativeStackScreenProps<
+  RootStackParamList,
+  "OrderDetails"
+>;

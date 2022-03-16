@@ -19,7 +19,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
         <Card.Content>
           <Title>{route.params.name} Return</Title>
           <Paragraph>{route.params.status}</Paragraph>
-          <Paragraph>Order {/*TODO*/}</Paragraph>
+          <Paragraph>Order {orderNumber}</Paragraph>
         </Card.Content>
       </Card>
 
@@ -27,7 +27,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
       <Text>December 23, 2021</Text>
 
       <List.Section>
-        {/* TODO <List.Subheader>Items in return:</List.Subheader> */}
+        <List.Subheader onPressOut={() => { }} onPressIn={() => { }}>Items in return:</List.Subheader>
         <List.Item
           onPress={() =>
             navigation.navigate("ItemDetail", {
@@ -44,7 +44,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
           description={<Text>SKU: 156897586</Text>}
           left={() => (
             <Avatar.Image
-              source={require(`../../assets/images/retailer/tshirt.jpeg`) /* TODO change for normal image */} 
+              source={require(`../../assets/images/retailer/tshirt.jpeg`) /* TODO change for normal image */}
             />
           )}
           right={() => <List.Icon icon="information" />}
@@ -82,7 +82,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
         2:55 PM Thursday Feburary 10, 2022
       </Text>
 
-      <Button onPress={() => navigation.navigate("AppHome")}>
+      <Button onPress={() => navigation.navigate("ReturnList")}>
         Confirm Return
       </Button>
 
