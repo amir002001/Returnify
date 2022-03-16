@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, Text, View } from "react-native";
+import { StyleSheet, Image, Text, View } from "react-native";
 import {
   Avatar,
   Card,
@@ -25,11 +25,11 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
         </Card.Content>
       </Card>
 
-      <Text>Date of return:</Text>
-      <Text>December 23, 2021</Text>
+      <Text style={styles.header} >Date of return:</Text>
+      <Text style={styles.subheading}>December 23, 2021</Text>
 
       <List.Section>
-        <List.Subheader onPressOut={() => { }} onPressIn={() => { }}>Items in return:</List.Subheader>
+        <List.Subheader style={styles.listSubheading} onPressOut={() => { }} onPressIn={() => { }}>Items in return:</List.Subheader>
         <List.Item
           onPress={() =>
             //navigates to full details of an item
@@ -75,21 +75,21 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
         />
       </List.Section>
 
-      <Text>Reason for return:</Text>
-      <Text style={{ fontStyle: "italic" }}>
+      <Text style={styles.header} >Reason for return:</Text>
+      <Text style={styles.quote}>
         "The clothes did not fit my body shape. The clothes were too tight."
       </Text>
 
-      <Text>Expected time arrival:</Text>
-      <Text style={{ fontWeight: "bold" }}>
+      <Text style={styles.header}>Expected time arrival:</Text>
+      <Text style={styles.date}>
         2:55 PM Thursday Feburary 10, 2022
       </Text>
 
-      <Button onPress={() => navigation.navigate("ReturnList")}>
+      <Button style={styles.btn} mode="contained" onPress={() => navigation.navigate("ReturnList")}>
         Confirm Return
       </Button>
 
-      <Button
+      <Button style={styles.btn} mode="contained"
         onPress={() => {
           navigation.navigate("Dispute", { orderNumber });
         }}
@@ -99,5 +99,34 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    fontSize: 24,
+    fontWeight: "bold",
+    margin: 5
+  },
+  subheading: {
+    fontSize: 20,
+    margin: 5
+  },
+  listSubheading: {
+    fontSize: 20,
+    margin: -10
+  },
+  btn: {
+    margin: 10
+  },
+  quote: {
+    fontSize: 20,
+    margin: 5,
+    fontStyle: 'italic'
+  },
+  date: {
+    fontSize: 20,
+    margin: 5,
+    fontWeight: "bold"
+  }
+});
 
 export default ReturnItemScreen
