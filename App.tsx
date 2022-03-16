@@ -14,6 +14,7 @@ import ReturnListScreen from "./screens/retailer/ReturnListScreen";
 import ItemDetailScreen from "./screens/retailer/ItemDetailScreen";
 import ReturnItemScreen from "./screens/retailer/ReturnItemScreen";
 import ProductDetails from "./screens/client/ProductDetails";
+import FilterOrders from "./screens/client/FilterMenu";
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -35,6 +36,7 @@ export default function App() {
             <Stack.Screen name="ReturnItem" component={ReturnItemScreen} />
             <Stack.Screen name="ItemDetail" component={ItemDetailScreen} />
             <Stack.Screen name="Dispute" component={DisputeScreen} />
+            <Stack.Screen name="FilterOrders" component={FilterOrders} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

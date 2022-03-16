@@ -10,7 +10,9 @@ const ClientHome = ({ navigation }: ClientHomeProps) => {
       {/* <Button onPress={() => navigation.navigate("AppHome")}>Go back</Button> */}
       <View style={{ margin: 5, marginTop: 15, flexDirection: "row", justifyContent: "space-between" }}>
        <Title style={{ margin: 5}}> Your Orders</Title>
-       <Button>Filter Orders</Button>  
+       <Button onPress={() => navigation.navigate("FilterOrders")}>
+          Filter Orders
+      </Button>  
       </View>
       <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, height: '100%'}}>
           <TouchableHighlight
@@ -41,7 +43,7 @@ const ClientHome = ({ navigation }: ClientHomeProps) => {
           <TouchableHighlight
             style={style.touchableOpacity}
             onPress={() =>
-              navigation.navigate("ReturnItem", {
+              navigation.navigate("OrderDetails", {
                 name: "Jim Jones",
                 orderNo: "#33233",
                 status: (
@@ -66,7 +68,7 @@ const ClientHome = ({ navigation }: ClientHomeProps) => {
           <TouchableHighlight
             style={style.touchableOpacity}
             onPress={() =>
-              navigation.navigate("ReturnItem", {
+              navigation.navigate("OrderDetails", {
                 name: "Jim Jones",
                 orderNo: "#33233",
                 status: (

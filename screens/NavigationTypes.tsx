@@ -19,6 +19,7 @@ export type RootStackParamList = {
   };
   Dispute: { orderNumber: string };
   ClientHome: undefined;
+  FilterOrders: undefined;
 };
 
 export type AppHomeProps = NativeStackScreenProps<
@@ -52,4 +53,8 @@ export type ClientHomeProps = NativeStackScreenProps<
 export type OrderDetailsProps = NativeStackScreenProps<
   RootStackParamList,
   "OrderDetails"
+>;
+export type FilterOrderProps = NativeStackScreenProps<
+  RootStackParamList,
+  "FilterOrders"
 >;
