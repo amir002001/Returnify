@@ -31,7 +31,7 @@ const ClientHome = ({ navigation }: ClientHomeProps) => {
             <View style={style.textContainer}>
                 <Image
                     source={require("../../assets/images/retailer/tshirt.jpeg")}
-                    style={{width: 70, height: 70, marginRight: 20, borderRadius: '100%', shadowOffset: {width: 0, height: 1},shadowOpacity: 0.80,shadowRadius: 4.84}}
+                    style={{width: 70, height: 70, marginRight: 20, borderRadius: 100, shadowOffset: {width: 0, height: 1},shadowOpacity: 0.80,shadowRadius: 4.84}}
                 />
                 <View style={{width: 'auto'}}>
                     <Title>H&M</Title>
@@ -56,7 +56,7 @@ const ClientHome = ({ navigation }: ClientHomeProps) => {
             <View style={style.textContainer}>
                 <Image
                     source={require("../../assets/images/retailer/pants.jpeg")}
-                    style={{width: 70, height: 70, marginRight: 20, borderRadius: '100%', shadowOffset: {width: 0, height: 1},shadowOpacity: 0.80,shadowRadius: 4.84}}
+                    style={{width: 70, height: 70, marginRight: 20, borderRadius:  100, shadowOffset: {width: 0, height: 1},shadowOpacity: 0.80,shadowRadius: 4.84}}
                 />
                 <View style={{width: 'auto'}}>
                     <Title>H&M</Title>
@@ -81,7 +81,7 @@ const ClientHome = ({ navigation }: ClientHomeProps) => {
             <View style={style.textContainer}>
                 <Image
                     source={require("../../assets/images/retailer/tshirt.jpeg")}
-                    style={{width: 70, height: 70, marginRight: 20, borderRadius: '100%', shadowOffset: {width: 0, height: 1},shadowOpacity: 0.80,shadowRadius: 4.84}}
+                    style={{width: 70, height: 70, marginRight: 20, borderRadius: 100, shadowOffset: {width: 0, height: 1},shadowOpacity: 0.80,shadowRadius: 4.84}}
                 />
                 <View style={{width: 'auto'}}>
                     <Title>H&M</Title>
