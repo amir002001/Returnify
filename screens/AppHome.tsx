@@ -28,7 +28,7 @@ const AppHome = ({ navigation }: AppHomeProps) => {
             source={{ uri: "https://picsum.photos/id/1071/200" }}
           ></Image>
 
-          <Title style={{alignSelf: "center", color: "purple"}}>LOGIN AS RETAILER</Title>
+          <Title style={{alignSelf: "center", color: "purple"}}>LOGIN AS DRIVER</Title>
         </TouchableOpacity>
         <TouchableOpacity
           style={{ marginBottom: 10 }}
