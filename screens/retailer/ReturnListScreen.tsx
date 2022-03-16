@@ -1,6 +1,6 @@
 import { Component, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Button, List, Portal, Paragraph, Dialog, Provider } from "react-native-paper";
+import { Avatar, Button, List, Portal, Paragraph, Dialog, Provider } from "react-native-paper";
 import { ReturnListProps } from "../NavigationTypes";
 
 //Author: Burhan
@@ -32,7 +32,11 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
             description={
               <Text style={{ color: "#00DD00" }}>Status: Delivered</Text>
             }
-            left={() => <List.Icon icon="account-circle" />}
+
+            left={() => (
+              <Avatar.Image
+                source={require(`../../assets/images/retailer/1.png`)}
+              />)}
             right={() => <List.Icon icon="information" />}
           />
           <List.Item
@@ -49,7 +53,10 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
             description={
               <Text style={{ color: "#FEBE00" }}>Status: Picked up</Text>
             }
-            left={() => <List.Icon color="#000" icon="account-circle" />}
+            left={() => (
+              <Avatar.Image
+                source={require(`../../assets/images/retailer/2.png`)}
+              />)}
             right={() => <List.Icon icon="information" />}
           />
           <List.Item
@@ -66,7 +73,10 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
             description={
               <Text style={{ color: "#FF0000" }}>Status: In transit</Text>
             }
-            left={() => <List.Icon color="#000" icon="account-circle" />}
+            left={() => (
+              <Avatar.Image
+                source={require(`../../assets/images/retailer/3.png`)}
+              />)}
             right={() => <List.Icon icon="information" />}
           />
           <List.Item
@@ -83,7 +93,10 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
             description={
               <Text style={{ color: "#FEBE00" }}>Status: Picked up</Text>
             }
-            left={() => <List.Icon color="#000" icon="account-circle" />}
+            left={() => (
+              <Avatar.Image
+                source={require(`../../assets/images/retailer/4.png`)}
+              />)}
             right={() => <List.Icon icon="information" />}
           />
           <List.Item
@@ -100,12 +113,13 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
             description={
               <Text style={{ color: "#FF0000" }}>Status: In transit</Text>
             }
-            left={() => <List.Icon color="#000" icon="account-circle" />}
+            left={() => (
+              <Avatar.Image
+                source={require(`../../assets/images/retailer/5.png`)}
+              />)}
             right={() => <List.Icon icon="information" />}
           />
         </List.Section>
-
-        <Button style={styles.btn} mode="contained" onPress={() => navigation.navigate("AppHome")}>Go back</Button>
 
         <Button style={styles.btn} mode="contained" onPress={() => { setVisible(true) }}>Show Dialog</Button>
         <Portal>

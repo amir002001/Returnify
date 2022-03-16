@@ -20,8 +20,8 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
       <Card>
         <Card.Content>
           <Title>{route.params.name} Return</Title>
-          <Paragraph>{route.params.status}</Paragraph>
-          <Paragraph>Order {orderNumber}</Paragraph>
+          <Paragraph style={{ fontSize: 18 }}>{route.params.status}</Paragraph>
+          <Paragraph style={{ fontSize: 16 }}>Order {orderNumber}</Paragraph>
         </Card.Content>
       </Card>
 
@@ -37,7 +37,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
               clothingName: "Crew T-Shirt",
               clothingImage: (
                 <Image
-                  style={{ width: 100, height: 100 }}
+                  style={{ margin: 30, width: 300, height: 300 }}
                   source={require(`../../assets/images/retailer/tshirt.jpeg`)}
                 />
               ),
@@ -58,7 +58,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
               clothingName: "Dress Pants",
               clothingImage: (
                 <Image
-                  style={{ width: 100, height: 100 }}
+                  style={{ margin: 30, width: 300, height: 300 }}
                   source={require(`../../assets/images/retailer/pants.jpeg`)}
                 />
               ),
