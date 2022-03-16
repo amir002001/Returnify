@@ -10,8 +10,10 @@ import {
 } from "react-native-paper";
 import { ReturnItemProps } from "../NavigationTypes";
 
+//Author: Burhan
+
 const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
-  const [visible, setVisible] = useState(false);
+  //states
   const [orderNumber, setOrderNumber] = useState("12345");
   return (
     <View>
@@ -30,6 +32,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
         <List.Subheader onPressOut={() => { }} onPressIn={() => { }}>Items in return:</List.Subheader>
         <List.Item
           onPress={() =>
+            //navigates to full details of an item
             navigation.navigate("ItemDetail", {
               clothingName: "Crew T-Shirt",
               clothingImage: (
@@ -44,7 +47,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
           description={<Text>SKU: 156897586</Text>}
           left={() => (
             <Avatar.Image
-              source={require(`../../assets/images/retailer/tshirt.jpeg`) /* TODO change for normal image */}
+              source={require(`../../assets/images/retailer/tshirt.jpeg`)}
             />
           )}
           right={() => <List.Icon icon="information" />}

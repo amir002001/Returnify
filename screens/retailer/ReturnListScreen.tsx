@@ -3,8 +3,10 @@ import { StyleSheet, Text, View } from "react-native";
 import { Button, List, Portal, Paragraph, Dialog, Provider } from "react-native-paper";
 import { ReturnListProps } from "../NavigationTypes";
 
-const ReturnListScreen = ({ navigation }: ReturnListProps) => {
+//Author: Burhan
 
+const ReturnListScreen = ({ navigation }: ReturnListProps) => {
+  //states
   const [visible, setVisible] = useState(false);
 
 
@@ -13,7 +15,10 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
       <View>
         <List.Section>
           <List.Item
+            //return item
             onPress={() =>
+
+              //navigate to the full detail of the return
               navigation.navigate("ReturnItem", {
                 name: "Bob Jones",
                 orderNo: "#33233",
