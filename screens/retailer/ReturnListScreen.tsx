@@ -1,7 +1,7 @@
 import { Component, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button, List, Portal, Paragraph, Dialog, Provider } from "react-native-paper";
-import { ReturnListProps } from "../../types";
+import { ReturnListProps } from "../NavigationTypes";
 
 const ReturnListScreen = ({ navigation }: ReturnListProps) => {
 
