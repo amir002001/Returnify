@@ -8,7 +8,8 @@ import {
   Title,
   Button,
 } from "react-native-paper";
-import { ReturnItemProps } from "../../types";
+import { ReturnItemProps } from "../NavigationTypes";
+
 
 const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
   const [visible, setVisible] = useState(false);
@@ -71,6 +72,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
                 </View>
                      
             </View>
+            <Button style={{padding: 20}}>Make a Return</Button>
         </View>
     </View>
   );
