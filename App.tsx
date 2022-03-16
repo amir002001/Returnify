@@ -13,6 +13,10 @@ import ClientHome from "./screens/client/ClientHome";
 import ReturnListScreen from "./screens/retailer/ReturnListScreen";
 import ItemDetailScreen from "./screens/retailer/ItemDetailScreen";
 import ReturnItemScreen from "./screens/retailer/ReturnItemScreen";
+import ModuleScreen from "./screens/driver/ModuleScreen";
+import AssessmentScreen from "./screens/driver/AssessmentScreen";
+import AssessmentFeedbackScreen from "./screens/driver/AssessmentFeedbackScreen";
+import AssessmentResultScreen from "./screens/driver/AssessmentResultScreen";
 import ProductDetails from "./screens/client/ProductDetails";
 import FilterOrders from "./screens/client/FilterMenu";
 
@@ -36,6 +40,10 @@ export default function App() {
             <Stack.Screen name="ReturnItem" component={ReturnItemScreen} />
             <Stack.Screen name="ItemDetail" component={ItemDetailScreen} />
             <Stack.Screen name="Dispute" component={DisputeScreen} />
+            <Stack.Screen name="Module" component={ModuleScreen} />
+            <Stack.Screen name="Assessment" component={AssessmentScreen} />
+            <Stack.Screen name="AssessmentFeedback" component={AssessmentFeedbackScreen} />
+            <Stack.Screen name="AssessmentResult" component={AssessmentResultScreen} />
             <Stack.Screen name="FilterOrders" component={FilterOrders} />
           </Stack.Navigator>
         </NavigationContainer>
