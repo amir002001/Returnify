@@ -1,4 +1,4 @@
-import { Button } from "react-native-paper";
+import { Button, Title } from "react-native-paper";
 import { DriverHomeProps, RootStackParamList } from "../NavigationTypes";
 import { useTailwind } from "tailwind-rn";
 import { ScrollView, Text, StyleSheet } from "react-native";
@@ -8,7 +8,7 @@ const DriverHome = ({ navigation }: DriverHomeProps) => {
   const tailwind = useTailwind();
   return (
     <ScrollView>
-      <Text>Driver Dashboard</Text>
+      <Title style={styles.module}>Hello Driver</Title>
       <TrainingModule
         style={styles.module} navigation={navigation}
         moduleName="Workplace Ethics"
