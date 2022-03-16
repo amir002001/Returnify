@@ -3,11 +3,11 @@ import { StyleSheet, Text, View, ScrollView, TouchableHighlight, Image } from "r
 import { Button, Title } from "react-native-paper";
 import { ClientHomeProps } from "../NavigationTypes";
 
+//Author: Mike
 
 const ClientHome = ({ navigation }: ClientHomeProps) => {
   return (
     <View>
-      {/* <Button onPress={() => navigation.navigate("AppHome")}>Go back</Button> */}
       <View style={{ margin: 5, marginTop: 15, flexDirection: "row", justifyContent: "space-between" }}>
        <Title style={{ margin: 5}}> Your Orders</Title>
        <Button onPress={() => navigation.navigate("FilterOrders")}>
@@ -17,6 +17,7 @@ const ClientHome = ({ navigation }: ClientHomeProps) => {
       <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, height: '100%'}}>
           <TouchableHighlight
             style={style.touchableOpacity}
+             //navigate to the full detail of the order
             onPress={() =>
               navigation.navigate("OrderDetails", {
                 name: "Jim Jones",
