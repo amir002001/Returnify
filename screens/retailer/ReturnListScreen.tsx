@@ -3,8 +3,10 @@ import { StyleSheet, Text, View } from "react-native";
 import { Button, List, Portal, Paragraph, Dialog, Provider } from "react-native-paper";
 import { ReturnListProps } from "../NavigationTypes";
 
-const ReturnListScreen = ({ navigation }: ReturnListProps) => {
+//Author: Burhan
 
+const ReturnListScreen = ({ navigation }: ReturnListProps) => {
+  //states
   const [visible, setVisible] = useState(false);
 
 
@@ -13,7 +15,11 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
       <View>
         <List.Section>
           <List.Item
+
+            //return item
             onPress={() =>
+
+              //navigate to the full detail of the return
               navigation.navigate("ReturnItem", {
                 name: "Bob Jones",
                 orderNo: "#33233",
@@ -99,10 +105,9 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
           />
         </List.Section>
 
-        <Button onPress={() => navigation.navigate("AppHome")}>Go back</Button>
+        <Button style={styles.btn} mode="contained" onPress={() => navigation.navigate("AppHome")}>Go back</Button>
 
-
-        <Button onPress={() => { setVisible(true) }}>Show Dialog</Button>
+        <Button style={styles.btn} mode="contained" onPress={() => { setVisible(true) }}>Show Dialog</Button>
         <Portal>
           <Dialog visible={visible} onDismiss={() => { setVisible(false) }}>
             <Dialog.Title onPressIn={() => { }} onPressOut={() => { }} >No returns</Dialog.Title>
@@ -118,5 +123,11 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
     </Provider>
   );
 };
+
+const styles = StyleSheet.create({
+  btn: {
+    margin: 10
+  }
+});
 
 export default ReturnListScreen;

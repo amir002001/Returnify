@@ -1,10 +1,13 @@
 import React, { Component, useState } from "react";
-import { Image, StyleSheet, View } from "react-native";
-import { Card, Paragraph, Title, Button, TextInput } from "react-native-paper";
+import { Image, StyleSheet, View, TextInput } from "react-native";
+import { Card, Paragraph, Title, Button } from "react-native-paper";
 import { DisputeProps } from "../NavigationTypes";
 
+//Author: Burhan
+
 const DisputeScreen = ({ navigation, route }: DisputeProps) => {
-  const [orderNumber, setOrderNumber] = useState(route.params.orderNumber); // TODO: typescript
+  //states
+  const [orderNumber, setOrderNumber] = useState(route.params.orderNumber);
   const [text, setText] = useState("");
 
   return (
@@ -15,20 +18,27 @@ const DisputeScreen = ({ navigation, route }: DisputeProps) => {
           <Paragraph>Please provide a reasoning for your dispute:</Paragraph>
         </Card.Content>
       </Card>
-      {/* <TextInput
-        mode="outlined"
-        label="Dispute reason"
-        value={text}
-        onChangeText={setText}
-        placeholder="Type something"
-        right={<TextInput.Affix text="/100" />}
-      /> // TODO FIX*/} 
 
-      <Button onPress={() => navigation.navigate("AppHome")}>
+      <TextInput multiline
+        numberOfLines={4}
+        style={styles.input}
+        placeholder="Enter dispute details">
+      </TextInput>
+
+      <Button mode="contained" onPress={() => navigation.navigate("AppHome")}>
         Submit Dispute
       </Button>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  input: {
+    height: "70%",
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  }
+});
 
 export default DisputeScreen;

@@ -11,7 +11,9 @@ import {
 import Icon from "react-native-paper/lib/typescript/components/Icon";
 import { ItemDetailProps } from "../NavigationTypes";
 
-const ItemDetailScreen = ({navigation, route}: ItemDetailProps) => {
+//Author: Burhan
+
+const ItemDetailScreen = ({ navigation, route }: ItemDetailProps) => {
   return (
     <View>
       <Card>
@@ -21,6 +23,7 @@ const ItemDetailScreen = ({navigation, route}: ItemDetailProps) => {
           <Text>SKU: 156897586</Text>
           <Text>Style Number: 9938</Text>
           <Text>Manufacture Date: Novemeber 12, 2020</Text>
+
           {route.params.clothingImage}
         </Card.Content>
       </Card>
