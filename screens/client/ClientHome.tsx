@@ -1,6 +1,6 @@
 import { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Button } from "react-native-paper";
+import { StyleSheet, Text, View, ScrollView, TouchableHighlight, Image } from "react-native";
+import { Button, Title } from "react-native-paper";
 import { ClientHomeProps } from "../NavigationTypes";
 
 
