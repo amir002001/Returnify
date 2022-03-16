@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { Button, IconButton, RadioButton, Title } from "react-native-paper";
 import { AssessmentFeedbackProps } from "../NavigationTypes";
 
+// Screen to show feedback to user
 const AssessmentFeedbackScreen = ({
   navigation,
   route,

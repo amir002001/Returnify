@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { Button, Colors, ProgressBar, Title } from "react-native-paper";
 import { ModuleProps } from "../NavigationTypes";
 
+// A screen for each particular module
 const ModuleScreen = ({ navigation, route }: ModuleProps) => {
   return (
     <View>

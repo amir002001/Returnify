@@ -4,6 +4,7 @@ import { useTailwind } from "tailwind-rn";
 import { ScrollView, Text, StyleSheet } from "react-native";
 import TrainingModule from "../../components/TrainingModule";
 
+// Driver's home page aka dashboard
 const DriverHome = ({ navigation }: DriverHomeProps) => {
   const tailwind = useTailwind();
   return (

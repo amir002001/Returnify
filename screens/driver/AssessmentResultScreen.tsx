@@ -2,6 +2,7 @@ import { Text, View } from "react-native";
 import { Button, IconButton, Title } from "react-native-paper";
 import { AssessmentResultProps } from "../NavigationTypes";
 
+// Screen to show assessment result to user
 const AssessmentResultScreen = ({ navigation, route }: AssessmentResultProps) => {
   return (
     <View>

@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import { Button, RadioButton, Title } from "react-native-paper";
 import { AssessmentProps } from "../NavigationTypes";
 
+// Screen to take assessment from user
 const AssessmentScreen = ({ navigation, route }: AssessmentProps) => {
   const [value, setValue] = useState("first");
 
