@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import { Button, IconButton, RadioButton } from "react-native-paper";
+import { Button, IconButton, RadioButton, Title } from "react-native-paper";
 import { AssessmentFeedbackProps } from "../NavigationTypes";
 
 const AssessmentFeedbackScreen = ({
@@ -8,7 +8,7 @@ const AssessmentFeedbackScreen = ({
 }: AssessmentFeedbackProps) => {
   return (
     <View>
-      <Text>What does the picture show</Text>
+      <Title style={{textAlign: "center"}}>What does the picture show</Title>
       <View style={{ justifyContent: "center", flexDirection: "row" }}>
         <Image
           style={styles.image}

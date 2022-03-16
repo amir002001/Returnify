@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import { Button, RadioButton } from "react-native-paper";
+import { Button, RadioButton, Title } from "react-native-paper";
 import { AssessmentProps } from "../NavigationTypes";
 
 const AssessmentScreen = ({ navigation, route }: AssessmentProps) => {
@@ -8,7 +8,7 @@ const AssessmentScreen = ({ navigation, route }: AssessmentProps) => {
 
   return (
     <View>
-      <Text>What does the picture show</Text>
+      <Title style={{textAlign: "center"}}>What does the picture show</Title>
       <View style={{ justifyContent: "center", flexDirection: "row" }}>
         <Image
           style={styles.image}
