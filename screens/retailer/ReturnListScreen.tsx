@@ -15,6 +15,7 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
       <View>
         <List.Section>
           <List.Item
+
             //return item
             onPress={() =>
 
@@ -104,10 +105,9 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
           />
         </List.Section>
 
-        <Button onPress={() => navigation.navigate("AppHome")}>Go back</Button>
+        <Button style={styles.btn} mode="contained" onPress={() => navigation.navigate("AppHome")}>Go back</Button>
 
-
-        <Button onPress={() => { setVisible(true) }}>Show Dialog</Button>
+        <Button style={styles.btn} mode="contained" onPress={() => { setVisible(true) }}>Show Dialog</Button>
         <Portal>
           <Dialog visible={visible} onDismiss={() => { setVisible(false) }}>
             <Dialog.Title onPressIn={() => { }} onPressOut={() => { }} >No returns</Dialog.Title>
@@ -123,5 +123,11 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
     </Provider>
   );
 };
+
+const styles = StyleSheet.create({
+  btn: {
+    margin: 10
+  }
+});
 
 export default ReturnListScreen;
