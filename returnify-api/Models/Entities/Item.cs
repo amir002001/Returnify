@@ -16,7 +16,7 @@ namespace returnify_api.Models.Entities
 
         public DateTime ManufacturedDate { get; set; }
 
-        public List<String> Images { get; set; }
+        public List<Image> Images { get; set; }
 
         public double Price { get; set; }
     }

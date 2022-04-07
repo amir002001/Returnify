@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace returnify_api.Models.Entities
 {
-    public class Assessment
+    public class Prompt
     {
         public Guid Id { get; set; }
-        public List<Question>? Questions { get; set; }
-        public double Score { get; set; }
+        public string Text { get; set; }
     }
 }

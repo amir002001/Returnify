@@ -5,14 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using returnify_api.Models.Entities;
 
-namespace returnify_api.Models.Persistance
+namespace returnify_api.Models.Persistence
 {
-    public class DataContext: DbContext
+    public class DataContext : DbContext
     {
-        public DbSet<Foo> Foo { get; set; }
-        public DbSet<Foo> Foo2 { get; set; }
-        public DbSet<Foo> Foo3 { get; set; }
-        public DbSet<Foo> Foo4 { get; set; }
+        public DbSet<Assessment> Assessments { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Driver> Drivers { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Retailer> Retailers { get; set; }
+        public DbSet<Return> Returns { get; set; }
+        public DbSet<TrainingModule> TrainingModules { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

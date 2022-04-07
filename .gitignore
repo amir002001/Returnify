@@ -17,3 +17,5 @@ web-build/
 # returnify api
 obj
 returnify-api/bin
+
+.vscode
