@@ -42,16 +42,16 @@ namespace returnify_api.Controllers
             //TODO: try catch
             var retailer = _context.Retailers.Include(r => r.Returns).ThenInclude(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(retailerId))).First();
             var allReturns = retailer.Returns;
-
-            return Ok(allReturns);
+            return Ok(allReturns.Select(r => new { Items = r.Items, ClientId = r.Client.Id, Status=r.Status, ReturnDate = r.ReturnDate, DisputeReason = r.DisputeReason, RetailerId = r.Retailer.Id}));
         }
-//jahaz
+        
         //GET a specfic user that has a return by calling the RETURN getReturnById
         [HttpGet("getReturnsByReturnId/{id}")]
         public async Task<IActionResult> GetReturnsByReturnId(string returnId)
         {
             //TODO: try catch
             var returnDetail = _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).First();
+            //TODO: make a DTO for return
             return Ok(returnDetail);
         }
 
@@ -64,13 +64,13 @@ namespace returnify_api.Controllers
             returnObject.Status = returnStatus;
 
             await _context.SaveChangesAsync();
-
+//TODO: make a DTO for return
             return Ok(returnObject);
         }
 
         //GET details of an ITEM getItemById
         [HttpGet("getItemById/{id}")]
-        public async Task<IActionResult> GetItemById(string itemId)
+        public IActionResult GetItemById(string itemId)
         {
             //TODO: try catch
             var item = _context.Items.Include(i => i.Images).FirstOrDefault(i => i.Id.Equals(new Guid(itemId)));
@@ -86,7 +86,7 @@ namespace returnify_api.Controllers
             returnObject.DisputeReason = userDisputeReason;
 
             await _context.SaveChangesAsync();
-
+//TODO: make a DTO for return
             return Ok(returnObject);
         }
     }

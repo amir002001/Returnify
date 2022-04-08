@@ -21,22 +21,19 @@ namespace returnify_api.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        [HttpGet]
+
+        [HttpGet("Assessment")]
         public IActionResult GetAllAssessments()
         {
             //TODO: Implement Realistic Implementation
             return Ok(_context.Assessments);
         }
 
-        [HttpGet]
-        public IActionResult GetAssessment(Guid? id)
+        [HttpGet("Assessment/{id}")]
+        public IActionResult GetAssessment(string id)
         {
-            if (id == null || id.Value == Guid.Empty) {
-                return BadRequest();
-            }
-            var assessment = _context.Assessments.Where(assessment => assessment.Id == id).Include(assessment => assessment.Questions);
-            
+            var assessment = _context.Assessments.Where(assessment => assessment.Id.Equals(new Guid(id))).Include(assessment => assessment.Questions);
+
             return Ok(assessment.First());
         }
 
@@ -48,12 +45,16 @@ namespace returnify_api.Controllers
             await _context.SaveChangesAsync();
             return Created("", null);
         }
-        
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View("Error!");
         }
+
+
     }
 }
+
+

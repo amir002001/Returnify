@@ -9,6 +9,7 @@ namespace returnify_api.Models.Entities
     {
         public Guid Id { get; set; }
         public List<Order> Orders { get; set; }
+        public List<Return> Returns { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
         public string Email { get; set; }

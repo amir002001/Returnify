@@ -16,5 +16,6 @@ namespace returnify_api.Models.Entities
 
         public String? DisputeReason { get; set; }
         public Driver Driver { get; set; }
+        public Retailer Retailer { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using returnify_api.Models.Persistence;
 
@@ -10,9 +11,10 @@ using returnify_api.Models.Persistence;
 namespace returnify_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220408010323_AddsReturn")]
+    partial class AddsReturn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.3");
@@ -242,7 +244,7 @@ namespace returnify_api.Migrations
                     b.Property<DateTime>("ExpectedArrivalTime")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("RetailerId")
+                    b.Property<Guid?>("RetailerId")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("ReturnDate")
@@ -355,17 +357,13 @@ namespace returnify_api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("returnify_api.Models.Entities.Retailer", "Retailer")
+                    b.HasOne("returnify_api.Models.Entities.Retailer", null)
                         .WithMany("Returns")
-                        .HasForeignKey("RetailerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RetailerId");
 
                     b.Navigation("Client");
 
                     b.Navigation("Driver");
-
-                    b.Navigation("Retailer");
                 });
 
             modelBuilder.Entity("returnify_api.Models.Entities.TrainingModule", b =>

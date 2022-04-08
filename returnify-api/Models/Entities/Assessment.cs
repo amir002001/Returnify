@@ -11,4 +11,4 @@ namespace returnify_api.Models.Entities
         public List<Question>? Questions { get; set; }
         public double Score { get; set; }
     }
-}
+}   

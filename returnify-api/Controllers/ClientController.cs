@@ -31,7 +31,7 @@ namespace returnify_api.Controllers
         }
 
         //get order by id
-        [HttpGet("{id}")]
+        [HttpGet("{orderId}")]
         public async Task<IActionResult> GetOrderById(string orderId)
         {
             //TODO: try catch
@@ -42,6 +42,7 @@ namespace returnify_api.Controllers
 
 
         //Get order within a price range
+        [HttpGet("getOrderByPriceRange")]
         public async Task<IActionResult> GetOrderByPriceRange(double startRange, double endRange, string userId)
         {
             //TODO: try catch
