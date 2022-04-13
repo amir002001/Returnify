@@ -87,12 +87,12 @@ namespace returnify_api.Controllers
             }
         }
 
-        [HttpPut("Assessment")]
-        async public Task<IActionResult> PutAssessmentResultsAsync([FromBody] Assessment assessment)
+        [HttpPut("Assessment/{id}")]
+        async public Task<IActionResult> PutAssessmentResultsAsync(string id, [FromBody] Assessment assessment)
         {
-
             try
             {
+                assessment.Id = new Guid(id);
                 await _driverService.UpdateAsessmentInDatabaseAsync(assessment);
                 return Ok();
             }

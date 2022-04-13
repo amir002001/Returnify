@@ -29,7 +29,7 @@ namespace returnify_api.Services
         }
         public async Task<Assessment?> RetrieveAssessmentByIdFromDatabaseAsync(string id)
         {
-            Assessment? assessment = await _context.Assessments.Where(assessment => assessment.Id.Equals(new Guid(id))).FirstOrDefaultAsync();
+            Assessment? assessment = await _context.Assessments.Where(assessment => assessment.Id.Equals(new Guid(id))).Include(assessment => assessment.Questions!).ThenInclude(question => question.Prompts).FirstOrDefaultAsync();
             return assessment;
         }
         public async Task<int> UpdateAsessmentInDatabaseAsync(Assessment assessment)

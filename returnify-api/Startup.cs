@@ -19,15 +19,11 @@ namespace returnify_api
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {   
+        {
             // cors policies
             services.AddCors();
             services.AddControllersWithViews();
             // swagger
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "returnify", Version = "v1" });
-            });
             // register db context as a service
             services.AddEntityFrameworkSqlite().AddDbContext<DataContext>();
             // transaction services
@@ -49,15 +45,10 @@ namespace returnify_api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Round The Code");
-            });
             app.UseStaticFiles();
             app.UseRouting();
             app.UseCors(options => options
-                .WithOrigins(new[] { "http://localhost:5002" })
+                .WithOrigins(new[] { "http://localhost:5200" })
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
