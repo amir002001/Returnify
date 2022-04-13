@@ -15,12 +15,7 @@ namespace returnify_api.Controllers
     [Route("api/[controller]")]
     public class ClientController : Controller
     {
-        // private readonly DataContext _context;
 
-        // public ClientController(DataContext context)
-        // {
-        //     _context = context;
-        // }
 
         private readonly ClientService _clientService;
 
