@@ -18,48 +18,48 @@ namespace returnify_api.Services
         }
 
         //GET all users that have a return from a retailer by calling the RETURN getAllReturns
-        public List<Return> GetAllReturnsFromDb(string retailerId)
+        public async Task<List<Return>> GetAllReturnsFromDb(string retailerId)
         {
-            var retailer = _context.Retailers.Include(r => r.Returns).ThenInclude(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(retailerId))).First();
+            var retailer = await _context.Retailers.Include(r => r.Returns).ThenInclude(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(retailerId))).FirstAsync();
             var allReturns = retailer.Returns;
 
             return allReturns;
         }
 
         //GET a specfic user that has a return by calling the RETURN getReturnById
-        public Return GetReturnsByReturnIdFromDb(string returnId)
+        public async Task<Return> GetReturnsByReturnIdFromDb(string returnId)
         {
-            var returnDetail = _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).First();
+            var returnDetail = await _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).FirstAsync();
 
             return returnDetail;
         }
 
         //UPDATE a RETURN by making confirm return  = true updateReturnConfirmation
-        public Return UpdateReturnStatusFromDb(string returnId, string returnStatus)
+        public async Task<Return> UpdateReturnStatusFromDb(string returnId, string returnStatus)
         {
-            var returnObject = _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).First();
+            var returnObject = await _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).FirstAsync();
             returnObject.Status = returnStatus;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return returnObject;
         }
 
         //GET details of an ITEM getItemById
-        public Item GetItemByIdFromDb(string itemId)
+        public async Task<Item> GetItemByIdFromDb(string itemId)
         {
-            var item = _context.Items.Include(i => i.Images).FirstOrDefault(i => i.Id.Equals(new Guid(itemId)));
+            var item = await _context.Items.Include(i => i.Images).FirstOrDefaultAsync(i => i.Id.Equals(new Guid(itemId)));
 
             return item;
         }
 
         //POST/UPDATE a dispute of a return
-        public Return UpdateDisputeReasonFromDb(string returnId, string userDisputeReason)
+        public async Task<Return> UpdateDisputeReasonFromDb(string returnId, string userDisputeReason)
         {
-            var returnObject = _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).First();
+            var returnObject = await _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).FirstAsync();
             returnObject.DisputeReason = userDisputeReason;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return returnObject;
         }

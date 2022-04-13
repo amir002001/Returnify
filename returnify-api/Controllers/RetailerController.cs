@@ -21,26 +21,15 @@ namespace returnify_api.Controllers
             _retailerService = retailerService;
         }
         //TODO FIX COMMENTS
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View("Error!");
-        }
-
         //API endpoints
 
         //GET all users that have a return from a retailer by calling the RETURN getAllReturns
         [HttpGet("getAllReturns")]
-        public IActionResult GetAllReturns(string retailerId)
+        public async Task<IActionResult> GetAllReturns(string retailerId)
         {
             try
             {
-                var serviceResult = _retailerService.GetAllReturnsFromDb(retailerId);
+                var serviceResult = await _retailerService.GetAllReturnsFromDb(retailerId);
                 return Ok(serviceResult.Select(r => new { Items = r.Items, ClientId = r.Client.Id, Status = r.Status, ReturnDate = r.ReturnDate, DisputeReason = r.DisputeReason, RetailerId = r.Retailer.Id }));
             }
             catch (System.Exception)
@@ -52,11 +41,11 @@ namespace returnify_api.Controllers
 
         //GET a specfic user that has a return by calling the RETURN getReturnById
         [HttpGet("getReturnsByReturnId/{id}")]
-        public IActionResult GetReturnsByReturnId(string returnId)
+        public async Task<IActionResult> GetReturnsByReturnId(string returnId)
         {
             try
             {
-                return Ok(_retailerService.GetReturnsByReturnIdFromDb(returnId));
+                return Ok(await _retailerService.GetReturnsByReturnIdFromDb(returnId));
             }
             catch (System.Exception)
             {
@@ -67,11 +56,11 @@ namespace returnify_api.Controllers
 
         //UPDATE a RETURN by making confirm return  = true updateReturnConfirmation
         [HttpPut("updateReturnStatus")]
-        public IActionResult UpdateReturnStatus(string returnId, [FromBody] string returnStatus)
+        public async Task<IActionResult> UpdateReturnStatus(string returnId, [FromBody] string returnStatus)
         {
             try
             {
-                return Ok(_retailerService.UpdateReturnStatusFromDb(returnId, returnStatus));
+                return Ok(await _retailerService.UpdateReturnStatusFromDb(returnId, returnStatus));
             }
             catch (System.Exception)
             {
@@ -83,11 +72,11 @@ namespace returnify_api.Controllers
 
         //GET details of an ITEM getItemById
         [HttpGet("getItemById/{id}")]
-        public IActionResult GetItemById(string itemId)
+        public async Task<IActionResult> GetItemById(string itemId)
         {
             try
             {
-                return Ok(_retailerService.GetItemByIdFromDb(itemId));
+                return Ok(await _retailerService.GetItemByIdFromDb(itemId));
             }
             catch (System.Exception)
             {
@@ -99,11 +88,11 @@ namespace returnify_api.Controllers
 
         //POST/UPDATE a dispute of a return updateDisputeOfReturnById?
         [HttpPut("updateDisputeReason")]
-        public IActionResult UpdateDisputeReason(string returnId, [FromBody] string userDisputeReason)
+        public async Task<IActionResult> UpdateDisputeReason(string returnId, [FromBody] string userDisputeReason)
         {
             try
             {
-                return Ok(_retailerService.UpdateDisputeReasonFromDb(returnId, userDisputeReason));
+                return Ok(await _retailerService.UpdateDisputeReasonFromDb(returnId, userDisputeReason));
             }
             catch (System.Exception)
             {

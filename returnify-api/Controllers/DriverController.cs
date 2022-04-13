@@ -33,7 +33,10 @@ namespace returnify_api.Controllers
             }
             catch (Exception e)
             {
-                return BadReq
+                return BadRequest(new
+                {
+                    Message = e.Message
+                });
             }
 
         }
@@ -41,22 +44,65 @@ namespace returnify_api.Controllers
         [HttpGet("Module/{id}")]
         public async Task<IActionResult> GetModuleByIdAsync(string id)
         {
-            TrainingModule trainingModule = await _driverService.RetrieveModuleByIdFromDatabaseAsync(id); // TODO null check ...
-            return Ok(trainingModule);
+
+            try
+            {
+                TrainingModule trainingModule = await _driverService.RetrieveModuleByIdFromDatabaseAsync(id); // TODO null check better way? ...
+                if (trainingModule is null)
+                    return NotFound(new
+                    {
+                        Message = "Module was not found"
+                    });
+                return Ok(trainingModule);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    Message = e.Message
+                });
+            }
         }
 
         [HttpGet("Assessment/{id}")]
         public async Task<IActionResult> GetAssessmentByIdAsync(string id)
         {
-            Assessment assessment = await _driverService.RetrieveAssessmentByIdFromDatabaseAsync(id); // TODO null check ...
-            return Ok(assessment);
+
+            try
+            {
+                Assessment assessment = await _driverService.RetrieveAssessmentByIdFromDatabaseAsync(id); // TODO null check better? ...
+                if (assessment is null)
+                    return NotFound(new
+                    {
+                        Message = "Module was not found"
+                    });
+                return Ok(assessment);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    Message = e.Message
+                });
+            }
         }
 
         [HttpPut("Assessment")]
         async public Task<IActionResult> PutAssessmentResultsAsync([FromBody] Assessment assessment)
         {
-            await _driverService.UpdateAsessmentInDatabaseAsync(assessment);
-            return Ok();
+
+            try
+            {
+                await _driverService.UpdateAsessmentInDatabaseAsync(assessment);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    Message = e.Message
+                });
+            }
         }
 
 
