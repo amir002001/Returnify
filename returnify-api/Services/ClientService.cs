@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using returnify_api.Models.Persistence;
 using returnify_api.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+
+
 namespace returnify_api.Services
 {
     public class ClientService
@@ -16,12 +18,14 @@ namespace returnify_api.Services
             _context = context;
         }
 
-        public async Task<List<Order>> GetAllClientOrdersFromDb(string userId)
+        public async Task<List<Order>> GetAllClientOrdersFromDb(string clientId)
         {
-
-            var loggedInUser = await _context.Clients.FirstOrDefaultAsync(u => u.Id.Equals(new Guid(userId)));
-            var orders = loggedInUser.Orders.Where(o => o.Client.Id.Equals(new Guid(userId))).ToList();
+            var loggedInUser = await _context.Clients.FirstOrDefaultAsync(u => u.Id.Equals(new Guid(clientId)));
+            var orders = loggedInUser.Orders.Where(o => o.Client.Id.Equals(new Guid(clientId))).ToList();
             return orders;
+            
+            //return await _context.TrainingModules.ToListAsync();
+
         }
 
         public async Task<Order> GetOrderByIdFromDb(string orderId)

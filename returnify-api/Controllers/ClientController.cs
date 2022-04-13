@@ -16,15 +16,12 @@ namespace returnify_api.Controllers
     public class ClientController : Controller
     {
 
-
         private readonly ClientService _clientService;
 
         public ClientController(ClientService clientService)
         {
             _clientService = clientService;
         }
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -34,17 +31,17 @@ namespace returnify_api.Controllers
 
 
         //Get ALL orders of a specific user
-        [HttpGet("getAllClientOrders")]
+        [HttpGet("getAllClientOrders/{clientId}")]
         public async Task<IActionResult> GetAllClientOrders(string clientId)
         {
-            try
-            {
-                return Ok(await _clientService.GetAllClientOrdersFromDb(clientId));
-            }
-            catch (System.Exception)
-            {
-                return BadRequest($"An error has occured retrieving all returns for the client {clientId}");
-            }
+            // try
+            // {
+            return Ok(await _clientService.GetAllClientOrdersFromDb(clientId));
+            // }
+            // catch (System.Exception)
+            // {
+            //     return BadRequest($"An error has occured retrieving all returns for the client {clientId}");
+            // }
         }
 
         //get order by id
@@ -63,8 +60,8 @@ namespace returnify_api.Controllers
         }
 
 
-        [HttpGet("getOrdersByFilter")]
-        public async Task<IActionResult> GetOrderByFilter(double startRange, double endRange, string storeName, DateTime date, string userId)
+        [HttpGet("getOrdersByFilter/{userId}")]
+        public async Task<IActionResult> GetOrderByFilter([FromQuery] double startRange,[FromQuery] double endRange,[FromQuery] string storeName,[FromQuery] DateTime date, string userId)
         {
             try
             {
