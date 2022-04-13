@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using returnify_api.Models.Persistence;
+using returnify_api.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace returnify_api.Controllers
@@ -13,13 +14,13 @@ namespace returnify_api.Controllers
     [Route("api/[controller]")]
     public class RetailerController : Controller
     {
-        private readonly DataContext _context;
+        private readonly RetailerService _retailerService;
 
-        public RetailerController(DataContext context)
+        public RetailerController(RetailerService retailerService)
         {
-            _context = context;
+            _retailerService = retailerService;
         }
-
+        //TODO FIX COMMENTS
         public IActionResult Index()
         {
             return View();
@@ -33,61 +34,83 @@ namespace returnify_api.Controllers
 
         //API endpoints
 
-
         //GET all users that have a return from a retailer by calling the RETURN getAllReturns
-        //TODO add sorting endpoints
         [HttpGet("getAllReturns")]
-        public async Task<IActionResult> GetAllReturns(string retailerId)
+        public IActionResult GetAllReturns(string retailerId)
         {
-            //TODO: try catch
-            var retailer = _context.Retailers.Include(r => r.Returns).ThenInclude(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(retailerId))).First();
-            var allReturns = retailer.Returns;
-            return Ok(allReturns.Select(r => new { Items = r.Items, ClientId = r.Client.Id, Status=r.Status, ReturnDate = r.ReturnDate, DisputeReason = r.DisputeReason, RetailerId = r.Retailer.Id}));
+            try
+            {
+                var serviceResult = _retailerService.GetAllReturnsFromDb(retailerId);
+                return Ok(serviceResult.Select(r => new { Items = r.Items, ClientId = r.Client.Id, Status = r.Status, ReturnDate = r.ReturnDate, DisputeReason = r.DisputeReason, RetailerId = r.Retailer.Id }));
+            }
+            catch (System.Exception)
+            {
+                return BadRequest($"An error has occured retrieving all returns for the retailer ID {retailerId}");
+            }
+
         }
-        
+
         //GET a specfic user that has a return by calling the RETURN getReturnById
         [HttpGet("getReturnsByReturnId/{id}")]
-        public async Task<IActionResult> GetReturnsByReturnId(string returnId)
+        public IActionResult GetReturnsByReturnId(string returnId)
         {
-            //TODO: try catch
-            var returnDetail = _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).First();
-            //TODO: make a DTO for return
-            return Ok(returnDetail);
+            try
+            {
+                return Ok(_retailerService.GetReturnsByReturnIdFromDb(returnId));
+            }
+            catch (System.Exception)
+            {
+
+                return BadRequest($"An error has occured retrieving all the return detail for the return ID {returnId}");
+            }
         }
 
         //UPDATE a RETURN by making confirm return  = true updateReturnConfirmation
         [HttpPut("updateReturnStatus")]
-        public async Task<IActionResult> UpdateReturnStatus(string returnId, [FromBody] string returnStatus)
+        public IActionResult UpdateReturnStatus(string returnId, [FromBody] string returnStatus)
         {
-            //TODO: try catch
-            var returnObject = _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).First();
-            returnObject.Status = returnStatus;
+            try
+            {
+                return Ok(_retailerService.UpdateReturnStatusFromDb(returnId, returnStatus));
+            }
+            catch (System.Exception)
+            {
 
-            await _context.SaveChangesAsync();
-//TODO: make a DTO for return
-            return Ok(returnObject);
+                return BadRequest($"An error has occured updating the return status for the return ID {returnId}");
+            }
+
         }
 
         //GET details of an ITEM getItemById
         [HttpGet("getItemById/{id}")]
         public IActionResult GetItemById(string itemId)
         {
-            //TODO: try catch
-            var item = _context.Items.Include(i => i.Images).FirstOrDefault(i => i.Id.Equals(new Guid(itemId)));
-            return Ok(item);
+            try
+            {
+                return Ok(_retailerService.GetItemByIdFromDb(itemId));
+            }
+            catch (System.Exception)
+            {
+
+                return BadRequest($"An error has occured retrieving the item details for the item ID {itemId}");
+            }
+
         }
 
         //POST/UPDATE a dispute of a return updateDisputeOfReturnById?
         [HttpPut("updateDisputeReason")]
-        public async Task<IActionResult> UpdateDisputeReason(string returnId, [FromBody] string userDisputeReason)
+        public IActionResult UpdateDisputeReason(string returnId, [FromBody] string userDisputeReason)
         {
-            //TODO: try catch
-            var returnObject = _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).First();
-            returnObject.DisputeReason = userDisputeReason;
+            try
+            {
+                return Ok(_retailerService.UpdateDisputeReasonFromDb(returnId, userDisputeReason));
+            }
+            catch (System.Exception)
+            {
 
-            await _context.SaveChangesAsync();
-//TODO: make a DTO for return
-            return Ok(returnObject);
+                return BadRequest($"An error has occured updating the dispute reason for the return ID {returnId}");
+            }
+
         }
     }
 }

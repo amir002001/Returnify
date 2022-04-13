@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using returnify_api.Models.Persistence;
 using returnify_api.Models.Entities;
+using returnify_api.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace returnify_api.Controllers
@@ -14,36 +15,48 @@ namespace returnify_api.Controllers
     [Route("api/[controller]")]
     public class DriverController : Controller
     {
-        private readonly DataContext _context;
+        private readonly DriverService _driverService;
 
-        public DriverController(DataContext context)
+        public DriverController(DriverService driverService)
         {
-            _context = context;
+            _driverService = driverService;
         }
 
 
-        [HttpGet("Assessment")]
-        public IActionResult GetAllAssessments()
+        [HttpGet("Module")]
+        public async Task<IActionResult> GetAllModulesAsync()
         {
             //TODO: Implement Realistic Implementation
-            return Ok(_context.Assessments);
+            try
+            {
+                return Ok(await _driverService.RetrieveAllModulesFromDatabaseAsync());
+            }
+            catch (Exception e)
+            {
+                return BadReq
+            }
+
+        }
+
+        [HttpGet("Module/{id}")]
+        public async Task<IActionResult> GetModuleByIdAsync(string id)
+        {
+            TrainingModule trainingModule = await _driverService.RetrieveModuleByIdFromDatabaseAsync(id); // TODO null check ...
+            return Ok(trainingModule);
         }
 
         [HttpGet("Assessment/{id}")]
-        public IActionResult GetAssessment(string id)
+        public async Task<IActionResult> GetAssessmentByIdAsync(string id)
         {
-            var assessment = _context.Assessments.Where(assessment => assessment.Id.Equals(new Guid(id))).Include(assessment => assessment.Questions);
-
-            return Ok(assessment.First());
+            Assessment assessment = await _driverService.RetrieveAssessmentByIdFromDatabaseAsync(id); // TODO null check ...
+            return Ok(assessment);
         }
 
-
-        [HttpPost]
-        async public Task<IActionResult> PostAssessmentResultsAsync([FromBody] Assessment _assessment)
+        [HttpPut("Assessment")]
+        async public Task<IActionResult> PutAssessmentResultsAsync([FromBody] Assessment assessment)
         {
-            _context.Assessments.Update(_assessment);
-            await _context.SaveChangesAsync();
-            return Created("", null);
+            await _driverService.UpdateAsessmentInDatabaseAsync(assessment);
+            return Ok();
         }
 
 
