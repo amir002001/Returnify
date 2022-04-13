@@ -23,7 +23,6 @@ namespace returnify_api
             // cors policies
             services.AddCors();
             services.AddControllersWithViews();
-            // swagger
             // register db context as a service
             services.AddEntityFrameworkSqlite().AddDbContext<DataContext>();
             // transaction services
@@ -48,10 +47,9 @@ namespace returnify_api
             app.UseStaticFiles();
             app.UseRouting();
             app.UseCors(options => options
-                .WithOrigins(new[] { "http://localhost:5200" })
+                .AllowAnyOrigin()
                 .AllowAnyHeader()
                 .AllowAnyMethod()
-                .AllowCredentials()
             );
 
             app.UseEndpoints(endpoints =>
