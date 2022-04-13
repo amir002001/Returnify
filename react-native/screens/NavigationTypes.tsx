@@ -5,13 +5,10 @@ export type RootStackParamList = {
   DriverHome: undefined;
   ReturnList: undefined;
   ReturnItem: {
-    name: string;
-    orderNo: string;
-    status: JSX.Element;
+    id: string;
   };
   ItemDetail: {
-    clothingName: string;
-    clothingImage: JSX.Element;
+    id: string;
   };
   OrderDetails: {
     clothingName: string;

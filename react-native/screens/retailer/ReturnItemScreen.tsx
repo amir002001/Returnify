@@ -19,9 +19,9 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
     <View>
       <Card>
         <Card.Content>
-          <Title>{route.params.name} Return</Title>
-          <Paragraph style={{ fontSize: 18 }}>{route.params.status}</Paragraph>
-          <Paragraph style={{ fontSize: 16 }}>Order {orderNumber}</Paragraph>
+          <Title>Return</Title>
+          <Paragraph style={{ fontSize: 18 }}>Status</Paragraph>
+          <Paragraph style={{ fontSize: 16 }}>Order ddd</Paragraph>
         </Card.Content>
       </Card>
 
@@ -34,13 +34,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
           onPress={() =>
             //navigates to full details of an item
             navigation.navigate("ItemDetail", {
-              clothingName: "Crew T-Shirt",
-              clothingImage: (
-                <Image
-                  style={{ margin: 30, width: 300, height: 300 }}
-                  source={require(`../../assets/images/retailer/tshirt.jpeg`)}
-                />
-              ),
+              id: "Crew T-Shirt"
             })
           }
           title="Crewneck T-Shirt"
@@ -52,27 +46,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
           )}
           right={() => <List.Icon icon="information" />}
         />
-        <List.Item
-          onPress={() =>
-            navigation.navigate("ItemDetail", {
-              clothingName: "Dress Pants",
-              clothingImage: (
-                <Image
-                  style={{ margin: 30, width: 300, height: 300 }}
-                  source={require(`../../assets/images/retailer/pants.jpeg`)}
-                />
-              ),
-            })
-          }
-          title="Dress Pants"
-          description={<Text>SKU: 986654789</Text>}
-          left={() => (
-            <Avatar.Image
-              source={require(`../../assets/images/retailer/pants.jpeg`)}
-            />
-          )}
-          right={() => <List.Icon icon="information" />}
-        />
+
       </List.Section>
 
       <Text style={styles.header} >Reason for return:</Text>

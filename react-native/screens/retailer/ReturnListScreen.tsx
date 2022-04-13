@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import { Component, useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Avatar, Button, List, Portal, Paragraph, Dialog, Provider } from "react-native-paper";
 import { ReturnListProps } from "../NavigationTypes";
@@ -8,117 +8,57 @@ import { ReturnListProps } from "../NavigationTypes";
 const ReturnListScreen = ({ navigation }: ReturnListProps) => {
   //states
   const [visible, setVisible] = useState(false);
+  const [returns, setReturns] = useState([]);
+
+  const retailerID = "EA43C98E-94AD-4442-890D-6B0B2B428F75";
+
+  //fetch api to our endpoint
+  //Retailer ID = EA43C98E-94AD-4442-890D-6B0B2B428F75	
+
+  useEffect(() => {
+    fetch(`http://localhost:5200/api/Retailer/getAllReturns/${retailerID}`, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((response) => setReturns(response))
+      .catch(e => console.log(e));
+    //string interpolation
+  }, []);
 
 
   return (
     <Provider>
       <View>
         <List.Section>
-          <List.Item
 
-            //return item
-            onPress={() =>
 
-              //navigate to the full detail of the return
-              navigation.navigate("ReturnItem", {
-                name: "Bob Jones",
-                orderNo: "#33233",
-                status: (
-                  <Text style={{ color: "#00DD00" }}>Status: Delivered</Text>
-                ),
-              })
-            }
-            title="Bob's Return"
-            description={
-              <Text style={{ color: "#00DD00" }}>Status: Delivered</Text>
-            }
+          {returns.length === 0 ? (
+            returns.map((value: any, index) => {
+              return (
+                <List.Item
 
-            left={() => (
-              <Avatar.Image
-                source={require(`../../assets/images/retailer/1.png`)}
-              />)}
-            right={() => <List.Icon icon="information" />}
-          />
-          <List.Item
-            onPress={() =>
-              navigation.navigate("ReturnItem", {
-                name: "Jim Jones",
-                orderNo: "#33233",
-                status: (
-                  <Text style={{ color: "#FEBE00" }}>Status: Picked up</Text>
-                ),
-              })
-            }
-            title="Jim's Return"
-            description={
-              <Text style={{ color: "#FEBE00" }}>Status: Picked up</Text>
-            }
-            left={() => (
-              <Avatar.Image
-                source={require(`../../assets/images/retailer/2.png`)}
-              />)}
-            right={() => <List.Icon icon="information" />}
-          />
-          <List.Item
-            onPress={() =>
-              navigation.navigate("ReturnItem", {
-                name: "Jan Jones",
-                orderNo: "#33233",
-                status: (
-                  <Text style={{ color: "#FF0000" }}>Status: In transit</Text>
-                ),
-              })
-            }
-            title="Jan's Return"
-            description={
-              <Text style={{ color: "#FF0000" }}>Status: In transit</Text>
-            }
-            left={() => (
-              <Avatar.Image
-                source={require(`../../assets/images/retailer/3.png`)}
-              />)}
-            right={() => <List.Icon icon="information" />}
-          />
-          <List.Item
-            onPress={() =>
-              navigation.navigate("ReturnItem", {
-                name: "Alex Jones",
-                orderNo: "#33233",
-                status: (
-                  <Text style={{ color: "#FEBE00" }}>Status: Picked up</Text>
-                ),
-              })
-            }
-            title="Alex's Return"
-            description={
-              <Text style={{ color: "#FEBE00" }}>Status: Picked up</Text>
-            }
-            left={() => (
-              <Avatar.Image
-                source={require(`../../assets/images/retailer/4.png`)}
-              />)}
-            right={() => <List.Icon icon="information" />}
-          />
-          <List.Item
-            onPress={() =>
-              navigation.navigate("ReturnItem", {
-                name: "Ron Jones",
-                orderNo: "#33233",
-                status: (
-                  <Text style={{ color: "#FF0000" }}>Status: In transit</Text>
-                ),
-              })
-            }
-            title="Ron's Return"
-            description={
-              <Text style={{ color: "#FF0000" }}>Status: In transit</Text>
-            }
-            left={() => (
-              <Avatar.Image
-                source={require(`../../assets/images/retailer/5.png`)}
-              />)}
-            right={() => <List.Icon icon="information" />}
-          />
+                  //return item
+                  onPress={() =>
+
+                    //navigate to the full detail of the return
+                    navigation.navigate("ReturnItem", {
+                      id: value.id
+                    })
+                  }
+                  title={value.client.Name}
+                  description={value.Status}
+
+                  left={() => (
+                    <Avatar.Image
+                      source={require(`../../assets/images/retailer/1.png`)}
+                    />)}
+                  right={() => <List.Icon icon="information" />}
+                />
+              )
+            })
+          ) : (<Text>Loading...</Text>)}
+
+
         </List.Section>
 
         <Button style={styles.btn} mode="contained" onPress={() => { setVisible(true) }}>Show Dialog</Button>
@@ -134,7 +74,7 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
           </Dialog>
         </Portal>
       </View >
-    </Provider>
+    </Provider >
   );
 };
 
