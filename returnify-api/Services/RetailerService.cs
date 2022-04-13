@@ -35,7 +35,7 @@ namespace returnify_api.Services
         }
 
         //UPDATE a RETURN by making confirm return  = true updateReturnConfirmation
-        public async Task<Return> UpdateReturnStatusFromDb(string returnId, string returnStatus)
+        public async Task<Return> UpdateReturnStatusFromDb(string returnId, string returnStatus = "Arrived")
         {
             var returnObject = await _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).FirstAsync();
             returnObject.Status = returnStatus;
