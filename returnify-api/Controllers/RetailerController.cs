@@ -24,13 +24,14 @@ namespace returnify_api.Controllers
         //API endpoints
 
         //GET all users that have a return from a retailer by calling the RETURN getAllReturns
-        [HttpGet("getAllReturns")]
+        [HttpGet("getAllReturns/{retailerId}")]
         public async Task<IActionResult> GetAllReturns(string retailerId)
         {
             try
             {
                 var serviceResult = await _retailerService.GetAllReturnsFromDb(retailerId);
-                return Ok(serviceResult.Select(r => new { Items = r.Items, ClientId = r.Client.Id, Status = r.Status, ReturnDate = r.ReturnDate, DisputeReason = r.DisputeReason, RetailerId = r.Retailer.Id }));
+
+                return Ok(serviceResult.Select(r => new { Items = r.Items, ClientId = r.Client.Id, Status = r.Status, ReturnDate = r.ReturnDate, DisputeReason = r.DisputeReason, RetailerId = r.Retailer.Id, ReturnId = r.Id }));
             }
             catch (System.Exception)
             {
@@ -40,12 +41,13 @@ namespace returnify_api.Controllers
         }
 
         //GET a specfic user that has a return by calling the RETURN getReturnById
-        [HttpGet("getReturnsByReturnId/{id}")]
+        [HttpGet("getReturnsByReturnId/{returnId}")]
         public async Task<IActionResult> GetReturnsByReturnId(string returnId)
         {
             try
             {
-                return Ok(await _retailerService.GetReturnsByReturnIdFromDb(returnId));
+                var returnObject = await _retailerService.GetReturnsByReturnIdFromDb(returnId);
+                return Ok(new { ReturnId = returnObject.Id, Items = returnObject.Items, Status = returnObject.Status, Date = returnObject.ReturnDate, EstimatedTime = returnObject.ExpectedArrivalTime, ClientName = returnObject.Client.Name });
             }
             catch (System.Exception)
             {
@@ -55,12 +57,13 @@ namespace returnify_api.Controllers
         }
 
         //UPDATE a RETURN by making confirm return  = true updateReturnConfirmation
-        [HttpPut("updateReturnStatus")]
-        public async Task<IActionResult> UpdateReturnStatus(string returnId, [FromBody] string returnStatus)
+        [HttpPut("updateReturnStatus/{returnId}")]
+        public async Task<IActionResult> UpdateReturnStatus(string returnId, [FromQuery] string returnStatus)
         {
             try
             {
-                return Ok(await _retailerService.UpdateReturnStatusFromDb(returnId, returnStatus));
+                var returnObject = await _retailerService.UpdateReturnStatusFromDb(returnId, returnStatus);
+                return Ok(new { ReturnId = returnObject.Id, Items = returnObject.Items, Status = returnObject.Status, Date = returnObject.ReturnDate, EstimatedTime = returnObject.ExpectedArrivalTime, ClientName = returnObject.Client.Name });
             }
             catch (System.Exception)
             {
@@ -71,7 +74,7 @@ namespace returnify_api.Controllers
         }
 
         //GET details of an ITEM getItemById
-        [HttpGet("getItemById/{id}")]
+        [HttpGet("getItemById/{itemId}")]
         public async Task<IActionResult> GetItemById(string itemId)
         {
             try
@@ -87,12 +90,13 @@ namespace returnify_api.Controllers
         }
 
         //POST/UPDATE a dispute of a return updateDisputeOfReturnById?
-        [HttpPut("updateDisputeReason")]
-        public async Task<IActionResult> UpdateDisputeReason(string returnId, [FromBody] string userDisputeReason)
+        [HttpPut("updateDisputeReason/{returnId}")]
+        public async Task<IActionResult> UpdateDisputeReason(string returnId, [FromQuery] string userDisputeReason)
         {
             try
             {
-                return Ok(await _retailerService.UpdateDisputeReasonFromDb(returnId, userDisputeReason));
+                var returnObject = await _retailerService.UpdateDisputeReasonFromDb(returnId, userDisputeReason);
+                return Ok(new { ReturnId = returnObject.Id, Items = returnObject.Items, Status = returnObject.Status, Date = returnObject.ReturnDate, EstimatedTime = returnObject.ExpectedArrivalTime, ClientName = returnObject.Client.Name, DisputeReason = returnObject.DisputeReason });
             }
             catch (System.Exception)
             {
