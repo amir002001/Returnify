@@ -13,7 +13,7 @@ const ClientHome = ({ navigation }: ClientHomeProps) => {
 
 
   useEffect(() => {
-    fetch("http://localhost:5200/api/Client/getAllClientOrders/2C09F1AA-6A0A-4B66-A40B-ED7F45FC67B1", {
+    fetch("http://20.70.34.47/api/Client/getAllClientOrders/2C09F1AA-6A0A-4B66-A40B-ED7F45FC67B1", {
       method: "GET",
     })
       .then((response) => response.json())

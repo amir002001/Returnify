@@ -11,7 +11,7 @@ const DriverHome = ({ navigation }: DriverHomeProps) => {
   const tailwind = useTailwind();
   const [modules, setModules] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5200/api/Driver/Module", {
+    fetch("http://20.70.34.47/api/Driver/Module", {
       method: "GET",
     })
       .then((response) => response.json())

@@ -17,7 +17,7 @@ const ItemDetailScreen = ({ navigation, route }: ItemDetailProps) => {
 
   const [item, setItems]: any = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5200/api/Retailer/getItemById/${route.params.id}`, {
+    fetch(`http://20.70.34.47/api/Retailer/getItemById/${route.params.id}`, {
       method: "GET"
     })
       .then((response) => response.json())

@@ -17,7 +17,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
 
   const [returnItems, setReturnItems]: any = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5200/api/Retailer/getReturnsByReturnId/${route.params.id}`, {
+    fetch(`http://20.70.34.47/api/Retailer/getReturnsByReturnId/${route.params.id}`, {
       method: "GET"
     })
       .then((response) => response.json())
@@ -80,7 +80,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
 
       <Button style={styles.btn} mode="contained" onPress={() => {
         fetch(
-          `http://localhost:5200/api/Retailer/UpdateReturnStatus/${returnItems.returnId}?returnStatus=Picked%20Up`,
+          `http://20.70.34.47/api/Retailer/UpdateReturnStatus/${returnItems.returnId}?returnStatus=Picked%20Up`,
           {
             method: "PUT",
             headers: {
