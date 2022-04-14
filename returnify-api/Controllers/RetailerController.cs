@@ -31,7 +31,7 @@ namespace returnify_api.Controllers
             {
                 var serviceResult = await _retailerService.GetAllReturnsFromDb(retailerId);
 
-                return Ok(serviceResult.Select(r => new { Items = r.Items, ClientId = r.Client.Id, Status = r.Status, ReturnDate = r.ReturnDate, DisputeReason = r.DisputeReason, RetailerId = r.Retailer.Id, ReturnId = r.Id }));
+                return Ok(serviceResult.Select(r => new { Items = r.Items, ClientName = r.Client.Name, Status = r.Status, ReturnDate = r.ReturnDate, DisputeReason = r.DisputeReason, RetailerId = r.Retailer.Id, ReturnId = r.Id }));
             }
             catch (System.Exception)
             {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, Image, Text, View } from "react-native";
 import {
   Avatar,
@@ -14,49 +14,67 @@ import { ReturnItemProps } from "../NavigationTypes";
 
 const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
   //states
-  const [orderNumber, setOrderNumber] = useState("12345");
+
+  const [returnItems, setReturnItems]: any = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5200/api/Retailer/getReturnsByReturnId/${route.params.id}`, {
+      method: "GET"
+    })
+      .then((response) => response.json())
+      .then((response) => setReturnItems(response))
+      .catch((e) => console.log(e));
+
+    //.then((response) => console.log(response.items[0]))
+
+
+  }, []);
+
   return (
     <View>
       <Card>
         <Card.Content>
           <Title>Return</Title>
-          <Paragraph style={{ fontSize: 18 }}>Status</Paragraph>
-          <Paragraph style={{ fontSize: 16 }}>Order ddd</Paragraph>
+          <Paragraph style={{ fontSize: 18 }}>Order status: {returnItems.status}</Paragraph>
         </Card.Content>
       </Card>
 
-      <Text style={styles.header} >Date of return:</Text>
-      <Text style={styles.subheading}>December 23, 2021</Text>
+      <Text style={styles.header} >Date of return: </Text>
+      <Text style={styles.subheading}>{new Date(returnItems.date).toDateString()}</Text>
 
       <List.Section>
         <List.Subheader style={styles.listSubheading} onPressOut={() => { }} onPressIn={() => { }}>Items in return:</List.Subheader>
-        <List.Item
-          onPress={() =>
-            //navigates to full details of an item
-            navigation.navigate("ItemDetail", {
-              id: "Crew T-Shirt"
-            })
-          }
-          title="Crewneck T-Shirt"
-          description={<Text>SKU: 156897586</Text>}
-          left={() => (
-            <Avatar.Image
-              source={require(`../../assets/images/retailer/tshirt.jpeg`)}
-            />
-          )}
-          right={() => <List.Icon icon="information" />}
-        />
+        {returnItems.length !== 0 ? (
+          returnItems.items.map((value: any, index: any) => {
+            return (
+              <List.Item
+                key={index}
+                onPress={() =>
+                  //navigates to full details of an item
+                  navigation.navigate("ItemDetail", {
+                    id: value.id
+                  })
+                }
+                title={value.name}
+                description={value.sku}
+                left={() => (
+                  <Avatar.Image
+                    source={require(`../../assets/images/retailer/${index + 1}.png`)}
+                  />
+                )}
+                right={() => <List.Icon icon="information" />}
+              />
+            )
+          })
+        ) : (
+          <Text>Loading...</Text>
+        )}
+
 
       </List.Section>
 
-      <Text style={styles.header} >Reason for return:</Text>
-      <Text style={styles.quote}>
-        "The clothes did not fit my body shape. The clothes were too tight."
-      </Text>
-
-      <Text style={styles.header}>Expected time arrival:</Text>
+      <Text style={styles.header}>Expected arrival time:</Text>
       <Text style={styles.date}>
-        2:55 PM Thursday Feburary 10, 2022
+        {new Date(returnItems.estimatedTime).toUTCString()}
       </Text>
 
       <Button style={styles.btn} mode="contained" onPress={() => navigation.navigate("ReturnList")}>
@@ -65,12 +83,12 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
 
       <Button style={styles.btn} mode="contained"
         onPress={() => {
-          navigation.navigate("Dispute", { orderNumber });
+          navigation.navigate("Dispute", { id: returnItems.id });
         }}
       >
         Open Disupte
       </Button>
-    </View>
+    </View >
   );
 };
 
