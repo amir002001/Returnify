@@ -39,7 +39,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
       </Card>
 
       <Text style={styles.header} >Date of return: </Text>
-      <Text style={styles.subheading}>{new Date(returnItems.date).toDateString()}</Text>
+      <Text style={styles.subheading}>{new Date(returnItems.ReturnDate).toDateString()}</Text>
 
       <List.Section>
         <List.Subheader style={styles.listSubheading} onPressOut={() => { }} onPressIn={() => { }}>Items in return:</List.Subheader>
