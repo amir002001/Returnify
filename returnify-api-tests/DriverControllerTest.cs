@@ -74,21 +74,22 @@ public class DriverControllerTest
         Assert.Equal(100, item.Score);
     }
 
-
     [Fact]
     public async void PutAssessmentResultsAsync_AssessmentExists_UpdatesAssessment()
     {
         var id = "94F8D01E-AE62-4CE3-B213-0E4F6B6E5759";
         var mockService = new Mock<IDriverService>();
-        var assessment = new Assessment { Score = 20, Id = new Guid(id) };
-        mockService.Setup(x => x.UpdateAsessmentInDatabaseAsync(assessment)).ReturnsAsync(1);
+        var assessment = new Assessment { Score = 100, Id = new Guid(id) };
+        mockService.Setup(x => x.UpdateAsessmentInDatabaseAsync(assessment)).ReturnsAsync(1).Callback(() => {
+            assessment.Score = 20;
+        });
         var controller = new DriverController(mockService.Object);
 
         // Act
         var okResult = await controller.PutAssessmentResultsAsync(id, assessment) as OkObjectResult;
-
         // Assert
-        Assert.Equal(200, okResult!.StatusCode);
+        Assert.Equal(20, assessment.Score);
     }
+
 
 }
