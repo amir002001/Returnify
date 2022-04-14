@@ -32,8 +32,8 @@ const ProductDetailsScreen = ({ navigation, route }: OrderDetailsProps) => {
           >
             <Title style={{ margin: 5, marginTop: 15, marginLeft: 15}}>Overview:</Title>
             <View style={style.textContainer}>
-            <View style={{width: 'auto'}}>
-                <Title>{retailer}</Title>
+            <View style={{width: '100%'}}>
+                <Title style={{textAlign: "center"}}>{retailer}</Title>
                 <Text style={{fontWeight: 'bold'}}>Total: ${total}</Text>
                 <Text>Purchased: {purchaseDate}</Text>
                 <Text style={{ marginBottom: 20}}>{items.length} items</Text>
@@ -66,11 +66,10 @@ const ProductDetailsScreen = ({ navigation, route }: OrderDetailsProps) => {
                             source={require("../../assets/images/retailer/tshirt.jpeg")}
                             style={{width: 70, height: 70, marginRight: 20, borderRadius: 100, shadowOffset: {width: 0, height: 1},shadowOpacity: 0.80,shadowRadius: 4.84}}
                         />
-                        <View style={{width: 'auto'}}>
+                        <View style={{width: '100%'}}>
                             <Title>{value.name}</Title>
-                            <Text style={{fontWeight: 'bold'}}>${value.total}</Text>
-                            <Text>Purchased: {value.purchaseDate}</Text>
-                            <Text>{value.items.length} Items</Text>
+                            <Text style={{fontWeight: 'bold', textAlign: "left"}}>${value.price}</Text>
+                            <Text style={{fontWeight: 'bold', textAlign: "left"}}>SKU: {value.sku}</Text>
                           </View>
                     </View>
                     </TouchableHighlight>
@@ -148,6 +147,7 @@ const style = StyleSheet.create({
         margin: 0,
         borderRadius: 10,
         marginTop: 0,
+        flexDirection: "row",
     }
   });
 

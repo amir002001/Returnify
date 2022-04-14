@@ -13,7 +13,7 @@ const ClientHome = ({ navigation }: ClientHomeProps) => {
 
 
   useEffect(() => {
-    fetch("http://localhost:5200/api/Client/getAllClientOrders/2C09F1AA-6A0A-4B66-A40B-ED7F45FC67B1", {
+    fetch("http://localhost:5200/api/Client/getAllClientOrders/D6024DF5-411F-48D1-8A47-8D17C05C8D45", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -54,9 +54,9 @@ const ClientHome = ({ navigation }: ClientHomeProps) => {
                         />
                         <View style={{width: 'auto'}}>
                             <Title>{value.retailer.name}</Title>
-                            <Text style={{fontWeight: 'bold'}}>${value.total}</Text>
-                            <Text>Purchased: {value.purchaseDate}</Text>
-                            <Text>{value.items.length} Items</Text>
+                            <Text style={{fontWeight: 'bold', textAlign: "left"}}>${value.total}</Text>
+                            <Text style={{textAlign: "left"}}>Purchased: {value.purchaseDate}</Text>
+                            <Text style={{textAlign: "left"}}>{value.items.length} Items</Text>
                           </View>
                     </View>
                     </TouchableHighlight>
