@@ -24,7 +24,7 @@ const ItemDetailScreen = ({ navigation, route }: ItemDetailProps) => {
       .then((response) => setItems(response))
       .catch((e) => console.log(e));
 
-    //.then((response) => console.log(response.items[0]))
+
 
 
   }, []);

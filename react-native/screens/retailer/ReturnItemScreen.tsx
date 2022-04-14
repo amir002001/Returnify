@@ -58,7 +58,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
                 description={value.sku}
                 left={() => (
                   <Avatar.Image
-                    source={require(`../../assets/images/retailer/${index + 1}.png`)}
+                    source={require(`../../assets/images/retailer/${value.images[0].path}.jpeg`)}
                   />
                 )}
                 right={() => <List.Icon icon="information" />}
