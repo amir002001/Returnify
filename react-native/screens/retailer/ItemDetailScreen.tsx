@@ -14,27 +14,39 @@ import { ItemDetailProps } from "../NavigationTypes";
 //Author: Burhan
 
 const ItemDetailScreen = ({ navigation, route }: ItemDetailProps) => {
-
+  const imageComps: any = {
+    hat: (
+      <Image
+        style={styles.imageStyle}
+        source={require(`../../assets/images/retailer/hat.jpeg`)}
+      />
+    ),
+    tshirt: (
+      <Image
+        style={styles.imageStyle}
+        source={require(`../../assets/images/retailer/tshirt.jpeg`)}
+      />
+    ),
+    pants: (
+      <Image
+        style={styles.imageStyle}
+        source={require(`../../assets/images/retailer/pants.jpeg`)}
+      />
+    ),
+  };
   const [item, setItems]: any = useState([]);
   useEffect(() => {
     fetch(`http://20.70.34.47/api/Retailer/getItemById/${route.params.id}`, {
-      method: "GET"
+      method: "GET",
     })
       .then((response) => response.json())
       .then((response) => {
         setItems(response);
-        console.log(response);
-
+        console.log(route.params);
       })
       .catch((e) => console.log(e));
     //${item.images[0].path}
-
-
-
-
-
   }, []);
-
 
   return (
     <View>
@@ -44,14 +56,14 @@ const ItemDetailScreen = ({ navigation, route }: ItemDetailProps) => {
           <Paragraph style={styles.subheading}>Product Information:</Paragraph>
           <Text style={styles.itemInfo}>SKU: {item.sku}</Text>
           <Text style={styles.itemInfo}>Style Number: {item.styleNumber}</Text>
-          <Text style={styles.itemInfo}>Manufacture Date: {new Date(item.manufacturedDate).toDateString()}</Text>
+          <Text style={styles.itemInfo}>
+            Manufacture Date: {new Date(item.manufacturedDate).toDateString()}
+          </Text>
 
           <View style={{ justifyContent: "center", flexDirection: "row" }}>
-            <Image
-              style={{ margin: 30, width: 300, height: 300 }}
-              // TODO
-              source={require(`../../assets/images/retailer/${route.params.imagePath}.jpeg`)}
-            />
+            {
+              imageComps[route.params.imagePath]
+            }
           </View>
         </Card.Content>
       </Card>
@@ -63,12 +75,13 @@ const styles = StyleSheet.create({
   subheading: {
     fontSize: 18,
     margin: 0,
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   itemInfo: {
     fontSize: 18,
-    margin: 0
-  }
+    margin: 0,
+  },
+  imageStyle: { margin: 30, width: 300, height: 300 },
 });
 
-export default ItemDetailScreen
+export default ItemDetailScreen;

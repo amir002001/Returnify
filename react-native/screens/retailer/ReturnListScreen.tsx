@@ -57,7 +57,7 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
 
                   left={() => (
                     <Avatar.Image
-                      source={require(`../../assets/images/retailer/${index + 1}.png`)}
+                      source={require(`../../assets/images/retailer/1.png`)}
                     />)}
                   right={() => <List.Icon icon="information" />}
                 />
