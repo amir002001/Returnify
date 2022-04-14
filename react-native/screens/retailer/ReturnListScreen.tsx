@@ -16,7 +16,7 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
   //Retailer ID = EA43C98E-94AD-4442-890D-6B0B2B428F75	
 
   // useEffect(() => {
-  //   fetch(`http://localhost:5200/api/Retailer/getAllReturns/EA43C98E-94AD-4442-890D-6B0B2B428F75`, {
+  //   fetch(`http://20.70.34.47/api/Retailer/getAllReturns/EA43C98E-94AD-4442-890D-6B0B2B428F75`, {
   //     method: "GET",
   //   })
   //     .then((response) => response.json())

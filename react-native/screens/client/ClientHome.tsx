@@ -16,7 +16,7 @@ const ClientHome = ({ navigation, route }: ClientHomeProps) => {
   const [returnDate, setReturnDate]:any = useState("04/07/2022");
 
   useEffect(() => {
-    fetch("http://localhost:5200/api/Client/getAllClientOrders/D6024DF5-411F-48D1-8A47-8D17C05C8D45", {
+    fetch("http://20.70.34.47/api/Client/getAllClientOrders/D6024DF5-411F-48D1-8A47-8D17C05C8D45", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -83,7 +83,7 @@ const ClientHome = ({ navigation, route }: ClientHomeProps) => {
             </View>
             <Button onPress={() =>
 
-              fetch(`http://localhost:5200/api/Client/getOrdersByFilter/D6024DF5-411F-48D1-8A47-8D17C05C8D45?&startRange=${minRange}&endRange=${maxRange}&storeName=${storeName}&date=${returnDate}`, {
+              fetch(`http://20.70.34.47/api/Client/getOrdersByFilter/D6024DF5-411F-48D1-8A47-8D17C05C8D45?&startRange=${minRange}&endRange=${maxRange}&storeName=${storeName}&date=${returnDate}`, {
                 method: "GET",
               })
                 .then((response) => response.json())
