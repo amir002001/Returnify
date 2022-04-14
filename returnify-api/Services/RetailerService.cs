@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace returnify_api.Services
 {
     //Authored by Burhan
-    public class RetailerService
+    public class RetailerService : IRetailerService
     {
         private readonly DataContext _context;
         public RetailerService(DataContext context)
@@ -29,7 +29,8 @@ namespace returnify_api.Services
         //GET a specfic user that has a return by calling the RETURN getReturnById
         public async Task<Return> GetReturnsByReturnIdFromDb(string returnId)
         {
-            var returnDetail = await _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).FirstAsync();
+            var returnDetail = await _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders)
+            .Include(c => c.Client).ThenInclude(c => c.Returns).ThenInclude(i => i.Items).ThenInclude(i => i.Images).Where(r => r.Id.Equals(new Guid(returnId))).FirstAsync();
 
             return returnDetail;
         }

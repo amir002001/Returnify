@@ -51,14 +51,15 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
                 onPress={() =>
                   //navigates to full details of an item
                   navigation.navigate("ItemDetail", {
-                    id: value.id
+                    id: value.id,
+                    imagePath: value.images[0].path
                   })
                 }
                 title={value.name}
                 description={value.sku}
                 left={() => (
                   <Avatar.Image
-                    source={require(`../../assets/images/retailer/${index + 1}.png`)}
+                    source={require(`../../assets/images/retailer/${value.images[0].path}.jpeg`)}
                   />
                 )}
                 right={() => <List.Icon icon="information" />}
@@ -77,7 +78,24 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
         {new Date(returnItems.estimatedTime).toUTCString()}
       </Text>
 
-      <Button style={styles.btn} mode="contained" onPress={() => navigation.navigate("ReturnList")}>
+      <Button style={styles.btn} mode="contained" onPress={() => {
+        fetch(
+          `http://localhost:5200/api/Retailer/UpdateReturnStatus/${returnItems.returnId}?returnStatus=Picked%20Up`,
+          {
+            method: "PUT",
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          }
+        )
+          .then(response => response.status)
+          .then()
+          .catch((e) => console.log(e));
+
+        navigation.navigate("ReturnList")
+      }
+
+      }>
         Confirm Return
       </Button>
 

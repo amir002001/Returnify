@@ -9,6 +9,7 @@ export type RootStackParamList = {
   };
   ItemDetail: {
     id: string;
+    imagePath: string;
   };
   OrderDetails:
    {

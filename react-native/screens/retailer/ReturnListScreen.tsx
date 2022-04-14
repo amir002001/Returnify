@@ -51,12 +51,13 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
                       id: value.returnId
                     })
                   }
-                  title={value.clientName}
-                  description={value.status}
+                  title={<Text style={{ color: "#000000" }}>{value.clientName}</Text>}
+                  description={<Text style={{ color: "#000000" }}>{value.status}</Text>}
+
 
                   left={() => (
                     <Avatar.Image
-                      source={require(`../../assets/images/retailer/1.png`)}
+                      source={require(`../../assets/images/retailer/${index + 1}.png`)}
                     />)}
                   right={() => <List.Icon icon="information" />}
                 />

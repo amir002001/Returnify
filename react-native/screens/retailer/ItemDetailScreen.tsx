@@ -21,10 +21,16 @@ const ItemDetailScreen = ({ navigation, route }: ItemDetailProps) => {
       method: "GET"
     })
       .then((response) => response.json())
-      .then((response) => setItems(response))
-      .catch((e) => console.log(e));
+      .then((response) => {
+        setItems(response);
+        console.log(response);
 
-    //.then((response) => console.log(response.items[0]))
+      })
+      .catch((e) => console.log(e));
+    //${item.images[0].path}
+
+
+
 
 
   }, []);
@@ -43,7 +49,8 @@ const ItemDetailScreen = ({ navigation, route }: ItemDetailProps) => {
           <View style={{ justifyContent: "center", flexDirection: "row" }}>
             <Image
               style={{ margin: 30, width: 300, height: 300 }}
-              source={require(`../../assets/images/retailer/${item.images[0].path}.jpeg`)}
+              // TODO
+              source={require(`../../assets/images/retailer/${route.params.imagePath}.jpeg`)}
             />
           </View>
         </Card.Content>
