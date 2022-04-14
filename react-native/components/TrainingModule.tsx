@@ -1,3 +1,4 @@
+import { TouchableOpacity } from "react-native";
 import { Avatar, Button, Card, Paragraph, Title } from "react-native-paper";
 import { TrainingModuleProps } from "./ComponentTypes";
 
@@ -6,15 +7,16 @@ const TrainingModule = ({
   moduleName,
   moduleSubtitle,
   navigation,
+  moduleId,
   ...props
 }: TrainingModuleProps) => {
-  const LeftContent = (props: any) => <Avatar.Icon {...props} icon="folder" />;
-
   return (
-    <Card onTouchEnd={() => navigation.navigate("Module")} {...props}>
+    <TouchableOpacity onPress={()=> {navigation.navigate("Module", {moduleId: moduleId})}}>
+    <Card {...props}>
       <Card.Title title={moduleName} subtitle={moduleSubtitle} />
       <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
     </Card>
+    </TouchableOpacity>
   );
 };
 

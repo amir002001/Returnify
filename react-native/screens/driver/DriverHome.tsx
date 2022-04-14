@@ -13,19 +13,21 @@ const DriverHome = ({ navigation }: DriverHomeProps) => {
   useEffect(() => {
     fetch("http://localhost:5200/api/Driver/Module", {
       method: "GET",
-      mode: "no-cors",
     })
       .then((response) => response.json())
-      .then((response) => setModules(response))
+      .then((response) => {setModules(response)})
       .catch((e) => console.log(e));
   }, []);
   return (
     <ScrollView>
       <Title style={styles.module}>Hello Driver</Title>
       {modules.length !== 0 ? (
-        modules.map((value, index) => {
+        modules.map((value: any, index) => {
           return (
             <TrainingModule
+              key={index}
+              moduleId={value.id}
+              navigation = {navigation}
               moduleName={`module ${index + 1}`}
               moduleSubtitle={`module ${
                 index + 1
@@ -36,7 +38,6 @@ const DriverHome = ({ navigation }: DriverHomeProps) => {
       ) : (
         <Text>Loading...</Text>
       )}
-      <Button onPress={() => navigation.navigate("AppHome")}>Go back</Button>
     </ScrollView>
   );
 };

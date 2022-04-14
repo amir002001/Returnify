@@ -51,7 +51,7 @@ const AssessmentFeedbackScreen = ({
       </RadioButton.Group>
       <Button
         onPress={() => {
-          navigation.navigate("AssessmentResult");
+          navigation.navigate("AssessmentResult", {assessmentId: route.params.assessmentId});
         }}
       >
         Assessment Result

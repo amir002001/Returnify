@@ -16,11 +16,18 @@ export type RootStackParamList = {
   };
   Dispute: { orderNumber: string };
   ClientHome: undefined;
-  ModuleHome: undefined;
-  Module: undefined;
-  Assessment: undefined;
-  AssessmentFeedback: undefined
-  AssessmentResult: undefined
+  Module: {
+    moduleId: string;
+  };
+  Assessment: {
+    assessmentId: string;
+  };
+  AssessmentFeedback: {
+    assessmentId: string;
+  };
+  AssessmentResult: {
+    assessmentId: string;
+  };
   FilterOrders: undefined;
 };
 
@@ -53,15 +60,7 @@ export type ClientHomeProps = NativeStackScreenProps<
   "ClientHome"
 >;
 
-export type ModuleHomeProps = NativeStackScreenProps<
-  RootStackParamList,
-  "ModuleHome"
->;
-
-export type ModuleProps = NativeStackScreenProps<
-  RootStackParamList,
-  "Module"
->;
+export type ModuleProps = NativeStackScreenProps<RootStackParamList, "Module">;
 
 export type AssessmentProps = NativeStackScreenProps<
   RootStackParamList,
