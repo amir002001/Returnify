@@ -19,3 +19,8 @@ obj
 returnify-api/bin
 
 .vscode
+
+*.db-shm
+*.db-wal
+
+bin

@@ -23,11 +23,7 @@ namespace returnify_api.Controllers
             _clientService = clientService;
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View("Error!");
-        }
+        
 
 
         //Get ALL orders of a specific user
