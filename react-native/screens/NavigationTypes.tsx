@@ -9,10 +9,14 @@ export type RootStackParamList = {
   };
   ItemDetail: {
     id: string;
+    imagePath: string;
   };
-  OrderDetails: {
-    clothingName: string;
-    clothingImage: JSX.Element;
+  OrderDetails:
+   {
+    retailer: string,
+    total: string,
+    purchaseDate: string,
+    items: any;
   };
   Dispute: { id: string };
   ClientHome: undefined;

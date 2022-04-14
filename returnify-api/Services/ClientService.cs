@@ -30,14 +30,14 @@ namespace returnify_api.Services
 
         }
 
-        // public async Task<Order> GetOrderByIdFromDb(string orderId)
-        // {
-        //     return await _context.Orders
-        //         .Include(i => i.Items)
-        //         .Include(o => o.Client)
-        //         .Include(o => o.Retailer)
-        //         .FirstOrDefaultAsync(i => i.Id.Equals(new Guid(orderId)));
-        // }
+        public async Task<Order> GetOrderByIdFromDb(string orderId)
+        {
+            return await _context.Orders
+                .Include(i => i.Items)
+                .Include(o => o.Client)
+                .Include(o => o.Retailer)
+                .FirstOrDefaultAsync(i => i.Id.Equals(new Guid(orderId)));
+        }
 
         public async Task<List<Order>> GetOrdersByFilterFromDb(DateTime date, string userId, double startRange = 0, double endRange = 10000000, string storeName = "HM")
         {
