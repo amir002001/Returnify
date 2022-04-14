@@ -19,7 +19,10 @@ export type RootStackParamList = {
     items: any;
   };
   Dispute: { id: string };
-  ClientHome: undefined;
+  ClientHome:
+  {
+    orders: any;
+  }
   Module: {
     moduleId: string;
   };
@@ -32,7 +35,7 @@ export type RootStackParamList = {
   AssessmentResult: {
     assessmentId: string;
   };
-  FilterOrders: undefined;
+  FilterOrders: undefined
 };
 
 export type AppHomeProps = NativeStackScreenProps<

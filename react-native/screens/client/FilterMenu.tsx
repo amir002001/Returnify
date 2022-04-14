@@ -15,10 +15,11 @@ import { ReturnItemProps } from "../NavigationTypes";
 const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
   const [visible, setVisible] = useState(false);
   const [orderNumber, setOrderNumber] = useState("12345");
-  const [minRange, setMinRange] = useState(null);
-  const [maxRange, setMaxRange] = useState(null);
-  const [storeName, setStoreName] = useState(null);
-  const [returnDate, setReturnDate] = useState(null);
+  const [minRange, setMinRange]:any = useState(null);
+  const [maxRange, setMaxRange]:any = useState(null);
+  const [storeName, setStoreName]:any = useState(null);
+  const [returnDate, setReturnDate]:any = useState(null);
+  const [orders, setOrders] = useState();
 
   return (
     <View>
@@ -37,34 +38,47 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
                     <TextInput
                       placeholder="From Price"
                       keyboardType='numeric'
-                      onChangeText={newText => setMinRange(newText)}
+                      onChangeText={setMinRange}
                       style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "40%",padding: 10, margin: 5, marginTop: 7}}/>
 
                     <Text style={{borderRadius:10, margin: 5, marginTop: 15}}>-</Text>
 
                     <TextInput
-                      placeholder="To Price"
+                      placeholder={minRange}
                       keyboardType='numeric'
-                      onChangeText={newText => setMaxRange(newText)}
+                      onChangeText={setMaxRange}
                       style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "40%",padding: 10, margin: 5, marginTop: 7}}/>
 
                 </View>
                 <Text style={{borderRadius:10,padding: 10, margin: 5, marginTop: 15, marginLeft: 0}}>From Store:</Text>
                 <TextInput
                   placeholder="Enter Store Name"
-                  onChangeText={newText => setStoreName(newText)}
+                  onChangeText={setStoreName}
                   style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "97%",padding: 10, margin: 5, marginTop: 7}}/>
 
                 <Text style={{borderRadius:10,padding: 10, margin: 5, marginTop: 15, marginLeft: 0}}>Enter Date:</Text>
                 <TextInput
                   placeholder="DD/MM/YYYY"
-                  onChangeText={newText => setReturnDate(newText)}
+                  onChangeText={setReturnDate}
                   style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "97%",padding: 10, margin: 5, marginTop: 7}}/>
                 </View>
                
             </View>
             <Button onPress={() =>
-              navigation.navigate("ClientHome")
+
+              fetch("http://localhost:5200/api/Client/getOrdersByFilter/2C09F1AA-6A0A-4B66-A40B-ED7F45FC67B1?&startRange=0.00&endRange=10.00&storeName=HM&date=04/07/2022", {
+                method: "GET",
+              })
+                .then((response) => response.json())
+                .then((response) =>
+                {
+                  setOrders(response);
+                  navigation.navigate("ClientHome", {
+                    orders: orders
+                  })
+                })
+                .catch((e) => console.log(e))
+
             }style={{padding: 20}}>Filter</Button>
         </View>
     </View>
