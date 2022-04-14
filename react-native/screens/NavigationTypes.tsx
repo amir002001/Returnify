@@ -14,7 +14,7 @@ export type RootStackParamList = {
     clothingName: string;
     clothingImage: JSX.Element;
   };
-  Dispute: { orderNumber: string };
+  Dispute: { id: string };
   ClientHome: undefined;
   ModuleHome: undefined;
   Module: undefined;
