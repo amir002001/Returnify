@@ -9,7 +9,7 @@ const AssessmentScreen = ({ navigation, route }: AssessmentProps) => {
   const [assessment, setAssessment]: any = useState();
   useEffect(() => {
     fetch(
-      `http://localhost:5200/api/Driver/Assessment/${route.params.assessmentId}`,
+      `http://20.70.34.47/api/Driver/Assessment/${route.params.assessmentId}`,
       {
         method: "GET",
       }
@@ -59,7 +59,7 @@ const AssessmentScreen = ({ navigation, route }: AssessmentProps) => {
         onPress={() => {
           navigation.navigate("AssessmentFeedback", {assessmentId: route.params.assessmentId});
           fetch(
-            `http://localhost:5200/api/Driver/Assessment/${route.params.assessmentId}`,
+            `http://20.70.34.47/api/Driver/Assessment/${route.params.assessmentId}`,
             {
               method: "PUT",
               headers: {

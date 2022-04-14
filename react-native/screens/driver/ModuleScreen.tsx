@@ -8,7 +8,7 @@ const ModuleScreen = ({ navigation, route }: ModuleProps) => {
   const [module, setModule]: any = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:5200/api/Driver/Module/${route.params.moduleId}`, {
+    fetch(`http://20.70.34.47/api/Driver/Module/${route.params.moduleId}`, {
       method: "GET",
     })
       .then((response) => response.json())

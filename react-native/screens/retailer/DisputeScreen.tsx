@@ -32,7 +32,7 @@ const DisputeScreen = ({ navigation, route }: DisputeProps) => {
         navigation.navigate("AppHome")
 
         fetch(
-          `http://localhost:5200/api/Retailer/updateDisputeReason/${returnId}?userDisputeReason=${text}`,
+          `http://20.70.34.47/api/Retailer/updateDisputeReason/${returnId}?userDisputeReason=${text}`,
           {
             method: "PUT",
             headers: {

@@ -9,7 +9,7 @@ const AssessmentResultScreen = ({ navigation, route }: AssessmentResultProps) =>
   const [assessment, setAssessment]: any = useState();
   useEffect(() => {
     fetch(
-      `http://localhost:5200/api/Driver/Assessment/${route.params.assessmentId}`,
+      `http://20.70.34.47/api/Driver/Assessment/${route.params.assessmentId}`,
       {
         method: "GET",
       }
