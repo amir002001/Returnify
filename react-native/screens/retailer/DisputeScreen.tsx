@@ -8,7 +8,7 @@ import { DisputeProps } from "../NavigationTypes";
 const DisputeScreen = ({ navigation, route }: DisputeProps) => {
   //states
   const [returnId, setReturnId] = useState(route.params.id);
-  const [text, setText] = useState("");
+  const [text, setText]: any = useState("");
 
   return (
     <View>
@@ -22,13 +22,31 @@ const DisputeScreen = ({ navigation, route }: DisputeProps) => {
       <TextInput multiline
         numberOfLines={4}
         style={styles.input}
-        placeholder="Enter dispute details">
+        placeholder="Enter dispute details"
+        onTextInput={setText}
+      >
+
       </TextInput>
 
-      <Button mode="contained" onPress={() => navigation.navigate("AppHome")}>
+      <Button mode="contained" onPress={() => {
+        navigation.navigate("AppHome")
+
+        fetch(
+          `http://localhost:5200/api/Retailer/updateDisputeReason/${returnId}?userDisputeReason=${text}`,
+          {
+            method: "PUT",
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          }
+        )
+          .then(response => response.status)
+          .then()
+          .catch((e) => console.log(e));
+      }}>
         Submit Dispute
       </Button>
-    </View>
+    </View >
   );
 };
 

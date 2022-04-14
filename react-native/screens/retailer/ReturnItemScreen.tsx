@@ -77,13 +77,30 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
         {new Date(returnItems.estimatedTime).toUTCString()}
       </Text>
 
-      <Button style={styles.btn} mode="contained" onPress={() => navigation.navigate("ReturnList")}>
+      <Button style={styles.btn} mode="contained" onPress={() => {
+        fetch(
+          `http://localhost:5200/api/Retailer/UpdateReturnStatus/${returnItems.returnId}?returnStatus=Picked%20Up`,
+          {
+            method: "PUT",
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          }
+        )
+          .then(response => response.status)
+          .then()
+          .catch((e) => console.log(e));
+
+        navigation.navigate("ReturnList")
+      }
+
+      }>
         Confirm Return
       </Button>
 
       <Button style={styles.btn} mode="contained"
         onPress={() => {
-          navigation.navigate("Dispute", { id: returnItems.id });
+          navigation.navigate("Dispute", { id: returnItems.returnId });
         }}
       >
         Open Disupte
