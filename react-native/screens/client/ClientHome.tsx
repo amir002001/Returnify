@@ -54,9 +54,9 @@ const ClientHome = ({ navigation }: ClientHomeProps) => {
                         />
                         <View style={{width: 'auto'}}>
                             <Title>{value.retailer.name}</Title>
-                            <Text style={{fontWeight: 'bold'}}>${value.total}</Text>
-                            <Text>Purchased: {value.purchaseDate}</Text>
-                            <Text>{value.items.length} Items</Text>
+                            <Text style={{fontWeight: 'bold', textAlign: "left"}}>${value.total}</Text>
+                            <Text style={{textAlign: "left"}}>Purchased: {value.purchaseDate}</Text>
+                            <Text style={{textAlign: "left"}}>{value.items.length} Items</Text>
                           </View>
                     </View>
                     </TouchableHighlight>
