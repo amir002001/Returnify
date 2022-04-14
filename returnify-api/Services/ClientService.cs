@@ -20,7 +20,9 @@ namespace returnify_api.Services
 
         public async Task<List<Order>> GetAllClientOrdersFromDb(string clientId)
         {
-            var loggedInUser = await _context.Clients.FirstOrDefaultAsync(u => u.Id.Equals(new Guid(clientId)));
+            var loggedInUser = await _context.Clients.Where(u => u.Id.Equals(new Guid(clientId)))
+                    .Include(u => u.Orders).ThenInclude(o => o.Items).ThenInclude(i => i.Images)
+                    .Include(u => u.Orders).ThenInclude(o => o.Retailer).FirstAsync();
             var orders = loggedInUser.Orders.Where(o => o.Client.Id.Equals(new Guid(clientId))).ToList();
             return orders;
             
@@ -28,20 +30,24 @@ namespace returnify_api.Services
 
         }
 
-        public async Task<Order> GetOrderByIdFromDb(string orderId)
-        {
-            return await _context.Orders.Include(i => i.Items).FirstOrDefaultAsync(i => i.Id.Equals(new Guid(orderId)));
-        }
+        // public async Task<Order> GetOrderByIdFromDb(string orderId)
+        // {
+        //     return await _context.Orders
+        //         .Include(i => i.Items)
+        //         .Include(o => o.Client)
+        //         .Include(o => o.Retailer)
+        //         .FirstOrDefaultAsync(i => i.Id.Equals(new Guid(orderId)));
+        // }
 
-        public async Task<List<Order>> GetOrdersByFilterFromDb(double startRange, double endRange, string storeName, DateTime date, string userId)
+        public async Task<List<Order>> GetOrdersByFilterFromDb(DateTime date, string userId, double startRange = 0, double endRange = 10000000, string storeName = "HM")
         {
-
-            var loggedInUser = await _context.Clients.Where(u => u.Id.Equals(new Guid(userId))).Include(u => u.Orders).ThenInclude(o => o.Items).FirstAsync();
-            var priceFilter = loggedInUser.Orders.Where(o => o.Total > startRange && o.Total > endRange);
-            var storeFilter = priceFilter.Where(o => o.Retailer.Name.Equals(storeName));
+            var loggedInUser = await _context.Clients.Where(u => u.Id.Equals(new Guid(userId)))
+                    .Include(u => u.Orders).ThenInclude(o => o.Items).ThenInclude(i => i.Images)
+                    .Include(u => u.Orders).ThenInclude(o => o.Retailer).FirstAsync();
+            var priceFilter = loggedInUser.Orders.Where(o => o.Total > startRange && o.Total < endRange).ToList();
+            var storeFilter = priceFilter.Where(o => o.Retailer.Name.Equals(storeName)).ToList();
             var dateFilter = storeFilter.Where(o => o.PurchaseDate.Equals(date)).ToList();
             return dateFilter;
         }
-
     }
 }
