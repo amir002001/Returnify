@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import {
   Avatar,
@@ -14,18 +14,37 @@ import { ItemDetailProps } from "../NavigationTypes";
 //Author: Burhan
 
 const ItemDetailScreen = ({ navigation, route }: ItemDetailProps) => {
+
+  const [item, setItems]: any = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5200/api/Retailer/getItemById/${route.params.id}`, {
+      method: "GET"
+    })
+      .then((response) => response.json())
+      .then((response) => setItems(response))
+      .catch((e) => console.log(e));
+
+    //.then((response) => console.log(response.items[0]))
+
+
+  }, []);
+
+
   return (
     <View>
       <Card>
         <Card.Content>
-          <Title>{route.params.clothingName}</Title>
+          <Title>{item.name}</Title>
           <Paragraph style={styles.subheading}>Product Information:</Paragraph>
-          <Text style={styles.itemInfo}>SKU: 156897586</Text>
-          <Text style={styles.itemInfo}>Style Number: 9938</Text>
-          <Text style={styles.itemInfo}>Manufacture Date: Novemeber 12, 2020</Text>
+          <Text style={styles.itemInfo}>SKU: {item.sku}</Text>
+          <Text style={styles.itemInfo}>Style Number: {item.styleNumber}</Text>
+          <Text style={styles.itemInfo}>Manufacture Date: {new Date(item.manufacturedDate).toDateString()}</Text>
 
           <View style={{ justifyContent: "center", flexDirection: "row" }}>
-            {route.params.clothingImage}
+            <Image
+              style={{ margin: 30, width: 300, height: 300 }}
+              source={require(`../../assets/images/retailer/${item.images[0].path}.jpeg`)}
+            />
           </View>
         </Card.Content>
       </Card>

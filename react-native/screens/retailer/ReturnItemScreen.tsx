@@ -83,7 +83,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
 
       <Button style={styles.btn} mode="contained"
         onPress={() => {
-          navigation.navigate("Dispute", { id: returnItems.id });
+          navigation.navigate("Dispute", { id: returnItems.returnId });
         }}
       >
         Open Disupte

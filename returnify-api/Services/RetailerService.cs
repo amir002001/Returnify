@@ -56,7 +56,7 @@ namespace returnify_api.Services
         //POST/UPDATE a dispute of a return
         public async Task<Return> UpdateDisputeReasonFromDb(string returnId, string userDisputeReason)
         {
-            var returnObject = await _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).FirstAsync();
+            var returnObject = await _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).ThenInclude(i => i.Images).Include(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).FirstAsync();
             returnObject.DisputeReason = userDisputeReason;
 
             await _context.SaveChangesAsync();
