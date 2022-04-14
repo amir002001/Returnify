@@ -36,14 +36,12 @@ namespace returnify_api.Services
         }
 
         //UPDATE a RETURN by making confirm return  = true updateReturnConfirmation
-        public async Task<Return> UpdateReturnStatusFromDb(string returnId, string returnStatus)
+        public async Task<int> UpdateReturnStatusFromDb(string returnId, string returnStatus)
         {
             var returnObject = await _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).ThenInclude(i => i.Images).Where(r => r.Id.Equals(new Guid(returnId))).FirstAsync();
             returnObject.Status = returnStatus;
 
-            await _context.SaveChangesAsync();
-
-            return returnObject;
+            return await _context.SaveChangesAsync();
         }
 
         //GET details of an ITEM getItemById
@@ -55,14 +53,12 @@ namespace returnify_api.Services
         }
 
         //POST/UPDATE a dispute of a return
-        public async Task<Return> UpdateDisputeReasonFromDb(string returnId, string userDisputeReason)
+        public async Task<int> UpdateDisputeReasonFromDb(string returnId, string userDisputeReason)
         {
             var returnObject = await _context.Returns.Include(c => c.Client).ThenInclude(o => o.Orders).ThenInclude(i => i.Items).ThenInclude(i => i.Images).Include(i => i.Items).Where(r => r.Id.Equals(new Guid(returnId))).FirstAsync();
             returnObject.DisputeReason = userDisputeReason;
 
-            await _context.SaveChangesAsync();
-
-            return returnObject;
+            return await _context.SaveChangesAsync();
         }
 
 

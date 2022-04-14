@@ -49,7 +49,8 @@ namespace returnify_api.Controllers
             try
             {
                 var returnObject = await _retailerService.GetReturnsByReturnIdFromDb(returnId);
-                return Ok(new { ReturnId = returnObject.Id, Items = returnObject.Items, Status = returnObject.Status, Date = returnObject.ReturnDate, EstimatedTime = returnObject.ExpectedArrivalTime, ClientName = returnObject.Client.Name });
+
+                return Ok(new ReturnItemDTO { ReturnId = returnObject.Id, Items = returnObject.Items, Status = returnObject.Status, ReturnDate = returnObject.ReturnDate, EstimatedTime = returnObject.ExpectedArrivalTime, ClientName = returnObject.Client.Name });
             }
             catch (System.Exception)
             {
@@ -64,9 +65,8 @@ namespace returnify_api.Controllers
         {
             try
             {
-                var returnObject = await _retailerService.UpdateReturnStatusFromDb(returnId, returnStatus);
-
-                return Ok(new { ReturnId = returnObject.Id, Items = returnObject.Items, Status = returnObject.Status, Date = returnObject.ReturnDate, EstimatedTime = returnObject.ExpectedArrivalTime, ClientName = returnObject.Client.Name });
+                await _retailerService.UpdateReturnStatusFromDb(returnId, returnStatus);
+                return Ok();
             }
             catch (System.Exception)
             {
@@ -98,8 +98,8 @@ namespace returnify_api.Controllers
         {
             try
             {
-                var returnObject = await _retailerService.UpdateDisputeReasonFromDb(returnId, userDisputeReason);
-                return Ok(new { ReturnId = returnObject.Id, Items = returnObject.Items, Status = returnObject.Status, Date = returnObject.ReturnDate, EstimatedTime = returnObject.ExpectedArrivalTime, ClientName = returnObject.Client.Name, DisputeReason = returnObject.DisputeReason });
+                await _retailerService.UpdateDisputeReasonFromDb(returnId, userDisputeReason);
+                return Ok();
             }
             catch (System.Exception)
             {
