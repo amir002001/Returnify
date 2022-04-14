@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace returnify_api.Services
 {
-    public class ClientService
+    public class ClientService:IClientService
     {
 
         private readonly DataContext _context;
