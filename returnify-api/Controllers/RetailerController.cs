@@ -8,15 +8,16 @@ using Microsoft.Extensions.Logging;
 using returnify_api.Models.Persistence;
 using returnify_api.Services;
 using Microsoft.EntityFrameworkCore;
+using returnify_api.Controllers.DTO;
 
 namespace returnify_api.Controllers
 {
     [Route("api/[controller]")]
     public class RetailerController : Controller
     {
-        private readonly RetailerService _retailerService;
+        private readonly IRetailerService _retailerService;
 
-        public RetailerController(RetailerService retailerService)
+        public RetailerController(IRetailerService retailerService)
         {
             _retailerService = retailerService;
         }
@@ -30,8 +31,9 @@ namespace returnify_api.Controllers
             try
             {
                 var serviceResult = await _retailerService.GetAllReturnsFromDb(retailerId);
+                var returnList = serviceResult.Select(r => new ReturnItemDTO { Items = r.Items, ClientName = r.Client.Name, Status = r.Status, ReturnDate = r.ReturnDate, DisputeReason = r.DisputeReason, RetailerId = r.Retailer.Id, ReturnId = r.Id }).ToList();
 
-                return Ok(serviceResult.Select(r => new { Items = r.Items, ClientName = r.Client.Name, Status = r.Status, ReturnDate = r.ReturnDate, DisputeReason = r.DisputeReason, RetailerId = r.Retailer.Id, ReturnId = r.Id }));
+                return Ok(returnList);
             }
             catch (System.Exception)
             {
@@ -47,7 +49,8 @@ namespace returnify_api.Controllers
             try
             {
                 var returnObject = await _retailerService.GetReturnsByReturnIdFromDb(returnId);
-                return Ok(new { ReturnId = returnObject.Id, Items = returnObject.Items, Status = returnObject.Status, Date = returnObject.ReturnDate, EstimatedTime = returnObject.ExpectedArrivalTime, ClientName = returnObject.Client.Name });
+
+                return Ok(new ReturnItemDTO { ReturnId = returnObject.Id, Items = returnObject.Items, Status = returnObject.Status, ReturnDate = returnObject.ReturnDate, EstimatedTime = returnObject.ExpectedArrivalTime, ClientName = returnObject.Client.Name });
             }
             catch (System.Exception)
             {
@@ -62,8 +65,8 @@ namespace returnify_api.Controllers
         {
             try
             {
-                var returnObject = await _retailerService.UpdateReturnStatusFromDb(returnId, returnStatus);
-                return Ok(new { ReturnId = returnObject.Id, Items = returnObject.Items, Status = returnObject.Status, Date = returnObject.ReturnDate, EstimatedTime = returnObject.ExpectedArrivalTime, ClientName = returnObject.Client.Name });
+                await _retailerService.UpdateReturnStatusFromDb(returnId, returnStatus);
+                return Ok();
             }
             catch (System.Exception)
             {
@@ -95,8 +98,8 @@ namespace returnify_api.Controllers
         {
             try
             {
-                var returnObject = await _retailerService.UpdateDisputeReasonFromDb(returnId, userDisputeReason);
-                return Ok(new { ReturnId = returnObject.Id, Items = returnObject.Items, Status = returnObject.Status, Date = returnObject.ReturnDate, EstimatedTime = returnObject.ExpectedArrivalTime, ClientName = returnObject.Client.Name, DisputeReason = returnObject.DisputeReason });
+                await _retailerService.UpdateDisputeReasonFromDb(returnId, userDisputeReason);
+                return Ok();
             }
             catch (System.Exception)
             {

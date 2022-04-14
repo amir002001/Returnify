@@ -67,19 +67,6 @@ const ReturnListScreen = ({ navigation }: ReturnListProps) => {
 
 
         </List.Section>
-
-        <Button style={styles.btn} mode="contained" onPress={() => { setVisible(true) }}>Show Dialog</Button>
-        <Portal>
-          <Dialog visible={visible} onDismiss={() => { setVisible(false) }}>
-            <Dialog.Title onPressIn={() => { }} onPressOut={() => { }} >No returns</Dialog.Title>
-            <Dialog.Content>
-              <Paragraph>There are no returns to display</Paragraph>
-            </Dialog.Content>
-            <Dialog.Actions>
-              <Button onPress={() => { setVisible(false) }}>Done</Button>
-            </Dialog.Actions>
-          </Dialog>
-        </Portal>
       </View >
     </Provider >
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Image, Text, View, StyleSheet, TextInput } from "react-native";
 import {
   Avatar,
@@ -15,6 +15,12 @@ import { ReturnItemProps } from "../NavigationTypes";
 const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
   const [visible, setVisible] = useState(false);
   const [orderNumber, setOrderNumber] = useState("12345");
+  const [minRange, setMinRange]:any = useState(null);
+  const [maxRange, setMaxRange]:any = useState(null);
+  const [storeName, setStoreName]:any = useState(null);
+  const [returnDate, setReturnDate]:any = useState(null);
+  const [orders, setOrders] = useState();
+
   return (
     <View>
         <Title style={{ margin: 5, marginTop: 15, marginLeft: 15}}>Find Your Orders</Title>
@@ -29,21 +35,50 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
             <View style={{width: 'auto'}}>
             <Text style={{borderRadius:10, margin: 5, marginTop: 15, marginLeft: 10}}>Price Range:</Text>
                 <View style={{marginTop: 15, flexDirection: "row", justifyContent: "space-between" }}>
-                    <TextInput style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "40%",padding: 10, margin: 5, marginTop: 7}}>From</TextInput>
+                    <TextInput
+                      placeholder="From Price"
+                      keyboardType='numeric'
+                      onChangeText={setMinRange}
+                      style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "40%",padding: 10, margin: 5, marginTop: 7}}/>
+
                     <Text style={{borderRadius:10, margin: 5, marginTop: 15}}>-</Text>
-                    <TextInput style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "40%",padding: 10, margin: 5, marginTop: 7}}>To</TextInput>
+
+                    <TextInput
+                      placeholder={minRange}
+                      keyboardType='numeric'
+                      onChangeText={setMaxRange}
+                      style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "40%",padding: 10, margin: 5, marginTop: 7}}/>
+
                 </View>
                 <Text style={{borderRadius:10,padding: 10, margin: 5, marginTop: 15, marginLeft: 0}}>From Store:</Text>
-                <TextInput style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "97%",padding: 10, margin: 5, marginTop: 7}}>Enter Store Name</TextInput>
+                <TextInput
+                  placeholder="Enter Store Name"
+                  onChangeText={setStoreName}
+                  style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "97%",padding: 10, margin: 5, marginTop: 7}}/>
 
                 <Text style={{borderRadius:10,padding: 10, margin: 5, marginTop: 15, marginLeft: 0}}>Enter Date:</Text>
-                <TextInput style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "97%",padding: 10, margin: 5, marginTop: 7}}>MM/DD/YYYY</TextInput>
-
+                <TextInput
+                  placeholder="DD/MM/YYYY"
+                  onChangeText={setReturnDate}
+                  style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "97%",padding: 10, margin: 5, marginTop: 7}}/>
                 </View>
                
             </View>
             <Button onPress={() =>
-              navigation.navigate("ClientHome")
+
+              fetch("http://localhost:5200/api/Client/getOrdersByFilter/2C09F1AA-6A0A-4B66-A40B-ED7F45FC67B1?&startRange=0.00&endRange=10.00&storeName=HM&date=04/07/2022", {
+                method: "GET",
+              })
+                .then((response) => response.json())
+                .then((response) =>
+                {
+                  setOrders(response);
+                  navigation.navigate("ClientHome", {
+                    orders: orders
+                  })
+                })
+                .catch((e) => console.log(e))
+
             }style={{padding: 20}}>Filter</Button>
         </View>
     </View>
