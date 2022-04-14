@@ -18,7 +18,6 @@ const DisputeScreen = ({ navigation, route }: DisputeProps) => {
       .then((response) => response.json())
       .then((response) => {
         setCurrentDisputeReason(response.disputeReason);
-        console.log(response)
       })
       .catch((e) => console.log(e));
 
