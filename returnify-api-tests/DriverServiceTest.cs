@@ -2,7 +2,7 @@ using Xunit;
 
 namespace returnify_api_tests;
 
-public class UnitTest1
+public class DriverServiceTest
 {
     [Fact]
     public void Test1()

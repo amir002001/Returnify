@@ -16,7 +16,7 @@ namespace returnify_api.Services
     /// <summary>
     /// This service is responsible for all database accesses for the driver functional area.
     /// </summary>
-    public class DriverService
+    public class DriverService : IDriverService
     {
         private readonly DataContext _context;
         /// <param name="context">
