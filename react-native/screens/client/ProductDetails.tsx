@@ -12,7 +12,6 @@ import {
 import { OrderDetailsProps } from "../NavigationTypes";
 
 //Author: Mike
-
 const ProductDetailsScreen = ({ navigation, route }: OrderDetailsProps) => {
   const [visible, setVisible] = useState(false);
   const [orderNumber, setOrderNumber] = useState("12345");
