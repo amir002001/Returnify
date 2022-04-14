@@ -17,9 +17,9 @@ namespace returnify_api.Controllers
     public class ClientController : Controller
     {
 
-        private readonly ClientService _clientService;
+        private readonly IClientService _clientService;
 
-        public ClientController(ClientService clientService)
+        public ClientController(IClientService clientService)
         {
             _clientService = clientService;
         }
@@ -31,7 +31,7 @@ namespace returnify_api.Controllers
             try
             {
             var serviceResult = await _clientService.GetAllClientOrdersFromDb(clientId);
-            return Ok(serviceResult.Select(c => new ClientItemDTO { Retailer = c.Retailer, Total = c.Total, PurchaseDate = c.PurchaseDate, Items = c.Items}));
+            return Ok(serviceResult.Select(c => new ClientItemDTO { Retailer = c.Retailer, Total = c.Total, PurchaseDate = c.PurchaseDate, Items = c.Items}).ToList());
             }
             catch (System.Exception)
             {
@@ -41,7 +41,7 @@ namespace returnify_api.Controllers
 
         //get order by id
         [HttpGet("getClientOrderById/{id}")]
-        public async Task<IActionResult> GetOrderById(string id)
+        public async Task<IActionResult> GetClientOrderById(string id)
         {
             try
             {
@@ -58,17 +58,17 @@ namespace returnify_api.Controllers
         [HttpGet("getOrdersByFilter/{userId}")]
         public async Task<IActionResult> GetOrderByFilter([FromQuery] double startRange,[FromQuery] double endRange,[FromQuery] string storeName,[FromQuery] string date, string userId)
         {
-            try
-            {
+            // try
+            // {
                 DateTime oDate = Convert.ToDateTime(date);
                 var serviceResult = await _clientService.GetOrdersByFilterFromDb(oDate, userId, startRange, endRange, storeName);
-                return Ok(serviceResult.Select(c => new ClientItemDTO { Retailer = c.Retailer, Total = c.Total, PurchaseDate = c.PurchaseDate, Items = c.Items}));
+                return Ok(serviceResult.Select(c => new ClientItemDTO { Retailer = c.Retailer, Total = c.Total, PurchaseDate = c.PurchaseDate, Items = c.Items}).ToList());
                 //return Ok(await _clientService.GetOrdersByFilterFromDb(startRange, endRange, storeName, oDate, userId));
-            }
-            catch (System.Exception)
-            {
-                return BadRequest($"An error has occured filtering orders for user with the id {userId}");
-            }
+            // }
+            // catch (System.Exception)
+            // {
+            //     return BadRequest($"An error has occured filtering orders for user with the id {userId}");
+            // }
         }
     }
 }
