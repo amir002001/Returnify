@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Image, Text, View, StyleSheet, TextInput } from "react-native";
 import {
   Avatar,
@@ -15,6 +15,11 @@ import { ReturnItemProps } from "../NavigationTypes";
 const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
   const [visible, setVisible] = useState(false);
   const [orderNumber, setOrderNumber] = useState("12345");
+  const [minRange, setMinRange] = useState(null);
+  const [maxRange, setMaxRange] = useState(null);
+  const [storeName, setStoreName] = useState(null);
+  const [returnDate, setReturnDate] = useState(null);
+
   return (
     <View>
         <Title style={{ margin: 5, marginTop: 15, marginLeft: 15}}>Find Your Orders</Title>
@@ -29,16 +34,32 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
             <View style={{width: 'auto'}}>
             <Text style={{borderRadius:10, margin: 5, marginTop: 15, marginLeft: 10}}>Price Range:</Text>
                 <View style={{marginTop: 15, flexDirection: "row", justifyContent: "space-between" }}>
-                    <TextInput style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "40%",padding: 10, margin: 5, marginTop: 7}}>From</TextInput>
+                    <TextInput
+                      placeholder="From Price"
+                      keyboardType='numeric'
+                      onChangeText={newText => setMinRange(newText)}
+                      style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "40%",padding: 10, margin: 5, marginTop: 7}}/>
+
                     <Text style={{borderRadius:10, margin: 5, marginTop: 15}}>-</Text>
-                    <TextInput style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "40%",padding: 10, margin: 5, marginTop: 7}}>To</TextInput>
+
+                    <TextInput
+                      placeholder="To Price"
+                      keyboardType='numeric'
+                      onChangeText={newText => setMaxRange(newText)}
+                      style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "40%",padding: 10, margin: 5, marginTop: 7}}/>
+
                 </View>
                 <Text style={{borderRadius:10,padding: 10, margin: 5, marginTop: 15, marginLeft: 0}}>From Store:</Text>
-                <TextInput style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "97%",padding: 10, margin: 5, marginTop: 7}}>Enter Store Name</TextInput>
+                <TextInput
+                  placeholder="Enter Store Name"
+                  onChangeText={newText => setStoreName(newText)}
+                  style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "97%",padding: 10, margin: 5, marginTop: 7}}/>
 
                 <Text style={{borderRadius:10,padding: 10, margin: 5, marginTop: 15, marginLeft: 0}}>Enter Date:</Text>
-                <TextInput style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "97%",padding: 10, margin: 5, marginTop: 7}}>MM/DD/YYYY</TextInput>
-
+                <TextInput
+                  placeholder="DD/MM/YYYY"
+                  onChangeText={newText => setReturnDate(newText)}
+                  style={{backgroundColor: '#d9d9d9', borderRadius:10, width: "97%",padding: 10, margin: 5, marginTop: 7}}/>
                 </View>
                
             </View>
