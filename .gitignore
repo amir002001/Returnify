@@ -22,3 +22,5 @@ returnify-api/bin
 
 *.db-shm
 *.db-wal
+
+bin

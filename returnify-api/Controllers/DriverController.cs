@@ -23,12 +23,12 @@ namespace returnify_api.Controllers
     [Route("api/[controller]")]
     public class DriverController : Controller
     {
-        private readonly DriverService _driverService;
+        private readonly IDriverService _driverService;
 
         /// <param name="driverService">
         /// parameter for the service responsible for database access.
         /// </param>
-        public DriverController(DriverService driverService)
+        public DriverController(IDriverService driverService)
         {
             _driverService = driverService;
         }

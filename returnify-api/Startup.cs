@@ -27,8 +27,8 @@ namespace returnify_api
             services.AddEntityFrameworkSqlite().AddDbContext<DataContext>();
             // transaction services
             services.AddScoped<ClientService>();
-            services.AddScoped<DriverService>();
-            services.AddScoped<RetailerService>();
+            services.AddScoped<IDriverService, DriverService>();
+            services.AddScoped<IRetailerService, RetailerService>();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
         }
