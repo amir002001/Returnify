@@ -29,6 +29,8 @@ namespace returnify_api
             services.AddScoped<ClientService>();
             services.AddScoped<DriverService>();
             services.AddScoped<RetailerService>();
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +39,8 @@ namespace returnify_api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
             else
             {
