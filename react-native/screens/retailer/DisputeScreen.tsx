@@ -8,7 +8,7 @@ import { DisputeProps } from "../NavigationTypes";
 const DisputeScreen = ({ navigation, route }: DisputeProps) => {
   //states
   const [returnId, setReturnId] = useState(route.params.id);
-  const [text, setText]: any = useState("");
+  const [dispute, setDispute]: any = useState("");
 
   return (
     <View>
@@ -23,7 +23,7 @@ const DisputeScreen = ({ navigation, route }: DisputeProps) => {
         numberOfLines={4}
         style={styles.input}
         placeholder="Enter dispute details"
-        onTextInput={setText}
+        onChangeText={setDispute}
       >
 
       </TextInput>
@@ -32,7 +32,7 @@ const DisputeScreen = ({ navigation, route }: DisputeProps) => {
         navigation.navigate("AppHome")
 
         fetch(
-          `http://20.70.34.47/api/Retailer/updateDisputeReason/${returnId}?userDisputeReason=${text}`,
+          `http://20.70.34.47/api/Retailer/updateDisputeReason/${returnId}?userDisputeReason=${dispute}`,
           {
             method: "PUT",
             headers: {
