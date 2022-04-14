@@ -51,7 +51,8 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
                 onPress={() =>
                   //navigates to full details of an item
                   navigation.navigate("ItemDetail", {
-                    id: value.id
+                    id: value.id,
+                    imagePath: value.images[0].path
                   })
                 }
                 title={value.name}
