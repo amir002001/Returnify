@@ -7,14 +7,14 @@ import { DisputeProps } from "../NavigationTypes";
 
 const DisputeScreen = ({ navigation, route }: DisputeProps) => {
   //states
-  const [orderNumber, setOrderNumber] = useState(route.params.orderNumber);
+  const [returnId, setReturnId] = useState(route.params.id);
   const [text, setText] = useState("");
 
   return (
     <View>
       <Card>
         <Card.Content>
-          <Title>Dispute for order {orderNumber}</Title>
+          <Title>Dispute for order {returnId}</Title>
           <Paragraph>Please provide a reasoning for your dispute:</Paragraph>
         </Card.Content>
       </Card>
