@@ -26,8 +26,6 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
       })
       .catch((e) => console.log(e));
 
-    //.then((response) => console.log(response.items[0]))
-
 
   }, []);
 
@@ -90,7 +88,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
             }
           }
         )
-          .then(response => { response.status; console.log(response.status) })
+          .then(response => { response.status })
           .catch((e) => console.log(e));
 
         navigation.navigate("ReturnList")

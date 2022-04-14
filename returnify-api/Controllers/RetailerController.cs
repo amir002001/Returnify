@@ -78,7 +78,7 @@ namespace returnify_api.Controllers
                 var returnObject = await _retailerService.GetReturnsByReturnIdFromDb(returnId);
 
                 //convert the return item to a DTO
-                return Ok(new ReturnItemDTO { ReturnId = returnObject.Id, Items = returnObject.Items, Status = returnObject.Status, ReturnDate = returnObject.ReturnDate, EstimatedTime = returnObject.ExpectedArrivalTime, ClientName = returnObject.Client.Name });
+                return Ok(new ReturnItemDTO { ReturnId = returnObject.Id, Items = returnObject.Items, Status = returnObject.Status, ReturnDate = returnObject.ReturnDate, DisputeReason = returnObject.DisputeReason, EstimatedTime = returnObject.ExpectedArrivalTime, ClientName = returnObject.Client.Name });
             }
             catch (System.Exception)
             {
