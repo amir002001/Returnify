@@ -9,7 +9,7 @@ const ClientHome = ({ navigation, route }: ClientHomeProps) => {
 
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders]:any = useState();
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
   const [minRange, setMinRange]:any = useState("0");
   const [maxRange, setMaxRange]:any = useState("10000000");
   const [storeName, setStoreName]:any = useState("HM");
@@ -45,7 +45,7 @@ const ClientHome = ({ navigation, route }: ClientHomeProps) => {
       >
             <Title style={{ margin: 5, marginTop: 15, marginLeft: 15}}>Filter Orders:</Title>
             <View style={style.textContainer}>
-            <View style={{width: 'auto', margin:"20px"}}>
+            <View style={{width: 'auto'}}>
             <Text style={{borderRadius:10, margin: 5, marginTop: 15, marginLeft: 10}}>Price Range:</Text>
                 <View style={{marginTop: 15, flexDirection: "row", justifyContent: "space-between" }}>
                     <TextInput
