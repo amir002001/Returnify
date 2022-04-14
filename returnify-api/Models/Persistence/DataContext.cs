@@ -19,10 +19,6 @@ namespace returnify_api.Models.Persistence
         public DbSet<Return> Returns { get; set; }
         public DbSet<TrainingModule> TrainingModules { get; set; }
 
-//method to query the db and update status
-//2 options:
-//1 make props protected and use public methods in datacontext
-//2 make a return service that the controller uses, leave datacontext alone
     
 public void UpdateReturnStatus(string returnId, string returnStatus){
 

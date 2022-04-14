@@ -1,3 +1,7 @@
+/**
+* @author  Burhan Faquiri
+* @since   2022-04-14
+*/
 using Xunit;
 using Moq;
 using returnify_api.Services;
@@ -10,8 +14,14 @@ using returnify_api.Controllers.DTO;
 
 namespace returnify_api_tests
 {
+    /// <summary>
+    /// This file is to perform unit tests against the controller
+    /// </summary>
     public class RetailerControllerTest
     {
+        /// <summary>
+        /// This test checks if the list of returns for a retailer is correct from what is added in the database
+        /// </summary>
         [Fact]
         public async void GetAllReturns_ListIsFull_ReturnsList()
         {
@@ -55,11 +65,13 @@ namespace returnify_api_tests
             Assert.Equal(3, items.Count);
         }
 
+        /// <summary>
+        /// This test checks if a return retrieved is correct with what was inputted
+        /// </summary>
         [Fact]
         public async void GetReturnsByReturnId_ReturnExists_ReturnItem()
         {
             var returnId = "94F8D01E-AE62-4CE3-B213-0E4F6B6E5759";
-            //var retailer = new Retailer { Id = new Guid("94F8D01E-AE62-4CE3-B213-0E4F6B6E5759") };
 
             var mockService = new Mock<IRetailerService>();
             mockService.Setup(x => x.GetReturnsByReturnIdFromDb(returnId)).ReturnsAsync(
@@ -82,6 +94,9 @@ namespace returnify_api_tests
             Assert.Equal("Picked Up", items.Status);
         }
 
+        /// <summary>
+        /// This test checks if an item retrieved is correct from what is added in the database
+        /// </summary>
         [Fact]
         public async void GetItemById_ItemExists_ItemDetails()
         {
@@ -105,6 +120,9 @@ namespace returnify_api_tests
             Assert.Equal("Black Pants", items.Name);
         }
 
+        /// <summary>
+        /// This test checks if a return that had its status updated was indeed changed in the database
+        /// </summary>
         [Fact]
         public async void UpdateReturnStatus_ReturnExists_UpdatesStatusOfReturn()
         {
@@ -125,6 +143,9 @@ namespace returnify_api_tests
             Assert.Equal(newReturnStatus, returnObject.Status);
         }
 
+        /// <summary>
+        /// This test checks if a return that had a dispute reason added was changed in the database
+        /// </summary>
         [Fact]
         public async void UpdateDisputeReason_ReturnExists_UpdatesDisputeOfReturn()
         {

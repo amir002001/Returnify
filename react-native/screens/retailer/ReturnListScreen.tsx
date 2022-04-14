@@ -7,24 +7,7 @@ import { ReturnListProps } from "../NavigationTypes";
 
 const ReturnListScreen = ({ navigation }: ReturnListProps) => {
   //states
-  const [visible, setVisible] = useState(false);
   const [returns, setReturns] = useState([]);
-
-  // const retailerID = "EA43C98E-94AD-4442-890D-6B0B2B428F75";
-
-  //fetch api to our endpoint
-  //Retailer ID = EA43C98E-94AD-4442-890D-6B0B2B428F75	
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:5200/api/Retailer/getAllReturns/EA43C98E-94AD-4442-890D-6B0B2B428F75`, {
-  //     method: "GET",
-  //   })
-  //     .then((response) => response.json())
-  //     .then((response) => setReturns(response))
-  //     .catch((e) => console.log(e));
-  //   //string interpolation
-  //   // .then((r) => console.log(r))
-  // }, []);
 
   useEffect(() => {
     fetch("http://localhost:5200/api/Retailer/getAllReturns/EA43C98E-94AD-4442-890D-6B0B2B428F75", {
