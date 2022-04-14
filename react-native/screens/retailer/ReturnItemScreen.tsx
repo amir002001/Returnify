@@ -21,7 +21,10 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
       method: "GET"
     })
       .then((response) => response.json())
-      .then((response) => setReturnItems(response))
+      .then((response) => {
+        setReturnItems(response);
+        console.log(response)
+      })
       .catch((e) => console.log(e));
 
     //.then((response) => console.log(response.items[0]))
@@ -39,7 +42,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
       </Card>
 
       <Text style={styles.header} >Date of return: </Text>
-      <Text style={styles.subheading}>{new Date(returnItems.ReturnDate).toDateString()}</Text>
+      <Text style={styles.subheading}>{new Date(returnItems.returnDate).toDateString()}</Text>
 
       <List.Section>
         <List.Subheader style={styles.listSubheading} onPressOut={() => { }} onPressIn={() => { }}>Items in return:</List.Subheader>
