@@ -17,3 +17,10 @@ web-build/
 # returnify api
 obj
 returnify-api/bin
+
+.vscode
+
+*.db-shm
+*.db-wal
+
+bin

@@ -5,26 +5,33 @@ export type RootStackParamList = {
   DriverHome: undefined;
   ReturnList: undefined;
   ReturnItem: {
-    name: string;
-    orderNo: string;
-    status: JSX.Element;
+    id: string;
   };
   ItemDetail: {
-    clothingName: string;
-    clothingImage: JSX.Element;
+    id: string;
+    imagePath: string;
   };
   OrderDetails: {
-    clothingName: string;
-    clothingImage: JSX.Element;
+    retailer: string;
+    total: string;
+    purchaseDate: string;
+    items: any;
   };
-  Dispute: { orderNumber: string };
+  Dispute: { id: string };
   ClientHome: undefined;
-  ModuleHome: undefined;
-  Module: undefined;
-  Assessment: undefined;
-  AssessmentFeedback: undefined
-  AssessmentResult: undefined
-  FilterOrders: undefined;
+  Module: {
+    moduleId: string;
+  };
+  Assessment: {
+    assessmentId: string;
+  };
+  AssessmentFeedback: {
+    assessmentId: string;
+  };
+  AssessmentResult: {
+    assessmentId: string;
+  };
+  // FilterOrders: undefined;
 };
 
 export type AppHomeProps = NativeStackScreenProps<
@@ -56,15 +63,7 @@ export type ClientHomeProps = NativeStackScreenProps<
   "ClientHome"
 >;
 
-export type ModuleHomeProps = NativeStackScreenProps<
-  RootStackParamList,
-  "ModuleHome"
->;
-
-export type ModuleProps = NativeStackScreenProps<
-  RootStackParamList,
-  "Module"
->;
+export type ModuleProps = NativeStackScreenProps<RootStackParamList, "Module">;
 
 export type AssessmentProps = NativeStackScreenProps<
   RootStackParamList,
@@ -85,7 +84,7 @@ export type OrderDetailsProps = NativeStackScreenProps<
   RootStackParamList,
   "OrderDetails"
 >;
-export type FilterOrderProps = NativeStackScreenProps<
-  RootStackParamList,
-  "FilterOrders"
->;
+// export type FilterOrderProps = NativeStackScreenProps<
+//   RootStackParamList,
+//   "FilterOrders"
+// >;
