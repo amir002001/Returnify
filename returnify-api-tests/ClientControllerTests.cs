@@ -1,3 +1,8 @@
+/**
+* @author  Michael Wright
+* @since   2022-04-14
+*/
+
 using Xunit;
 using Moq;
 using returnify_api.Services;
@@ -10,15 +15,21 @@ using returnify_api.Controllers.DTO;
 
 namespace returnify_api_tests
 {
+    /// <summary>
+    /// This file is to perform unit tests against the controller
+    /// </summary>
     public class ClientControllerTest
     {
+
+        /// <summary>
+        /// This test checks if the list of orders for a client is correct from what is added in the database
+        /// </summary>
         [Fact]
         public async void GetAllOrdersByClientId_ListIsFull_OrdersList()
         {
-            // var retailerId = "94F8D01E-AE62-4CE3-B213-0E4F6B6E5759";
+
             var retailer = new Retailer { Id = new Guid("94F8D01E-AE62-4CE3-B213-0E4F6B6E5759") };
             var clientId = "2C09F1AA-6A0A-4B66-A40B-ED7F45FC67B1";
-            // var client = new Client { Id = new Guid("2C09F1AA-6A0A-4B66-A40B-ED7F45FC67B1") };
 
             var mockService = new Mock<IClientService>();
             mockService.Setup(x => x.GetAllClientOrdersFromDb(clientId)).ReturnsAsync(new List<Order> {
@@ -43,11 +54,14 @@ namespace returnify_api_tests
             var okResult = await controller.GetAllClientOrders(clientId) as OkObjectResult;
 
             // Assert
-            var items = Assert.IsType<List<ClientItemDTO>>(okResult!.Value);
+            var items = Assert.IsType<List<OrderItemDTO>>(okResult!.Value);
             Assert.Equal(2, items.Count);
         }
 
 
+        /// <summary>
+        /// This test checks if the correct order is returned by id
+        /// </summary>
         [Fact]
         public async void GetOrdersByOrderId_OrderExists_OrderItem()
         {
@@ -70,11 +84,14 @@ namespace returnify_api_tests
             var okResult = await controller.GetClientOrderById(orderId) as OkObjectResult;
 
             // Assert
-            var items = Assert.IsType<ClientItemDTO>(okResult!.Value);
+            var items = Assert.IsType<OrderItemDTO>(okResult!.Value);
             Assert.Equal(10.00, items.Total);
         }
 
 
+        /// <summary>
+        /// This test checks if the list of orders for a client is correct from what is added in the database with the filter criteria
+        /// </summary>
         [Fact]
         public async void GetOrdersByFilter_CorrectItemsReturned()
         {
@@ -102,7 +119,7 @@ namespace returnify_api_tests
                 var okResult = await controller.GetOrderByFilter( startRange, endRange, storeName, "04/07/2022", userId) as OkObjectResult;
 
                 // Assert
-                var items = Assert.IsType<List<ClientItemDTO>>(okResult!.Value);
+                var items = Assert.IsType<List<OrderItemDTO>>(okResult!.Value);
                 Assert.Equal(1, items.Count);
             }
         }

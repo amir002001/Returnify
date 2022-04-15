@@ -1,3 +1,9 @@
+/**
+* @author  Michael Wright
+* @since   2022-04-1 
+*/
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace returnify_api.Models.Entities
 {
+    /// <summary>
+    /// This file is to create a Item class and properties
+    /// </summary>
     public class Item
     {
         public Guid Id { get; set; }

@@ -11,18 +11,14 @@ export type RootStackParamList = {
     id: string;
     imagePath: string;
   };
-  OrderDetails:
-   {
-    retailer: string,
-    total: string,
-    purchaseDate: string,
+  OrderDetails: {
+    retailer: string;
+    total: string;
+    purchaseDate: string;
     items: any;
   };
   Dispute: { id: string };
-  ClientHome:
-  {
-    orders: any;
-  }
+  ClientHome: undefined;
   Module: {
     moduleId: string;
   };
@@ -35,7 +31,7 @@ export type RootStackParamList = {
   AssessmentResult: {
     assessmentId: string;
   };
-  FilterOrders: undefined
+  // FilterOrders: undefined;
 };
 
 export type AppHomeProps = NativeStackScreenProps<
@@ -88,7 +84,7 @@ export type OrderDetailsProps = NativeStackScreenProps<
   RootStackParamList,
   "OrderDetails"
 >;
-export type FilterOrderProps = NativeStackScreenProps<
-  RootStackParamList,
-  "FilterOrders"
->;
+// export type FilterOrderProps = NativeStackScreenProps<
+//   RootStackParamList,
+//   "FilterOrders"
+// >;

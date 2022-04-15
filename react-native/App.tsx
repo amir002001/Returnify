@@ -18,7 +18,7 @@ import AssessmentScreen from "./screens/driver/AssessmentScreen";
 import AssessmentFeedbackScreen from "./screens/driver/AssessmentFeedbackScreen";
 import AssessmentResultScreen from "./screens/driver/AssessmentResultScreen";
 import ProductDetails from "./screens/client/ProductDetails";
-import FilterOrders from "./screens/client/FilterMenu";
+// import FilterOrders from "./screens/client/FilterMenu";
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -44,7 +44,7 @@ export default function App() {
             <Stack.Screen name="Assessment" component={AssessmentScreen} />
             <Stack.Screen name="AssessmentFeedback" component={AssessmentFeedbackScreen} />
             <Stack.Screen name="AssessmentResult" component={AssessmentResultScreen} />
-            <Stack.Screen name="FilterOrders" component={FilterOrders} />
+            {/* <Stack.Screen name="FilterOrders" component={FilterOrders} /> */}
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>
