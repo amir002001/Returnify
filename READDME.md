@@ -32,15 +32,16 @@ The BAM team were sick and tired of the old return experience where you had to w
 * [ASP.NET Core](https://sqlite.org/)
 * [Moq](https://github.com/moq/moq4/)
 * [xUnit](https://xunit.net/)
-
+* [TypeScript](https://www.typescriptlang.org/)
+* 
 ### Hosted Using
-* <img src="images/azure.png" alt="Logo" width="20" height="20"> [Azure](https://azure.microsoft.com/en-us/)
+* [Azure](https://azure.microsoft.com/en-us/)
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Meet The Team <img src="images/team-logo.png" alt="Logo" width="40" height="40">
 <img src="images/burhan.png" alt="Logo" width="80" height="80">
 
-#### Burhan Fauqiri
+#### Burhan Faquiri
 Hello, I am a motivated and enthusiastic 3rd-year Computer Science student studying at Sheridan College. I have experience through school projects in a vast number of languages such as Python, C#, C++, Java, JavaScript, and Kotlin to name a few. Feel free to connect where we can have a conversation about technology, hackathons or to see some projects!
 
 <img src="images/amir.png" alt="Logo" width="80" height="80">
