@@ -42,7 +42,6 @@ const ItemDetailScreen = ({ navigation, route }: ItemDetailProps) => {
       .then((response) => response.json())
       .then((response) => {
         setItems(response);
-        console.log(route.params);
       })
       .catch((e) => console.log(e));
     //${item.images[0].path}
