@@ -23,11 +23,8 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
       .then((response) => response.json())
       .then((response) => {
         setReturnItems(response);
-        console.log(response)
       })
       .catch((e) => console.log(e));
-
-    //.then((response) => console.log(response.items[0]))
 
 
   }, []);
@@ -62,7 +59,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
                 description={value.sku}
                 left={() => (
                   <Avatar.Image
-                    source={require(`../../assets/images/retailer/hat.jpeg`)}
+                    source={require(`../../assets/images/retailer/bag.jpeg`)}
                   />
                 )}
                 right={() => <List.Icon icon="information" />}
@@ -83,7 +80,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
 
       <Button style={styles.btn} mode="contained" onPress={() => {
         fetch(
-          `http://20.70.34.47/api/Retailer/UpdateReturnStatus/${returnItems.returnId}?returnStatus=Picked%20Up`,
+          `http://20.70.34.47/api/Retailer/updateReturnStatus/${returnItems.returnId}?returnStatus=Arrived`,
           {
             method: "PUT",
             headers: {
@@ -91,8 +88,7 @@ const ReturnItemScreen = ({ navigation, route }: ReturnItemProps) => {
             }
           }
         )
-          .then(response => response.status)
-          .then()
+          .then(response => { response.status })
           .catch((e) => console.log(e));
 
         navigation.navigate("ReturnList")

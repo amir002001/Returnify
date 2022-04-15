@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { Image, StyleSheet, View, TextInput } from "react-native";
 import { Card, Paragraph, Title, Button } from "react-native-paper";
 import { DisputeProps } from "../NavigationTypes";
@@ -8,7 +8,21 @@ import { DisputeProps } from "../NavigationTypes";
 const DisputeScreen = ({ navigation, route }: DisputeProps) => {
   //states
   const [returnId, setReturnId] = useState(route.params.id);
-  const [text, setText]: any = useState("");
+  const [dispute, setDispute]: any = useState("");
+  const [currentDisputeReason, setCurrentDisputeReason]: any = useState("");
+
+  useEffect(() => {
+    fetch(`http://20.70.34.47/api/Retailer/getReturnsByReturnId/${route.params.id}`, {
+      method: "GET"
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        setCurrentDisputeReason(response.disputeReason);
+      })
+      .catch((e) => console.log(e));
+
+
+  }, []);
 
   return (
     <View>
@@ -22,8 +36,8 @@ const DisputeScreen = ({ navigation, route }: DisputeProps) => {
       <TextInput multiline
         numberOfLines={4}
         style={styles.input}
-        placeholder="Enter dispute details"
-        onTextInput={setText}
+        placeholder={currentDisputeReason}
+        onChangeText={setDispute}
       >
 
       </TextInput>
@@ -32,7 +46,7 @@ const DisputeScreen = ({ navigation, route }: DisputeProps) => {
         navigation.navigate("AppHome")
 
         fetch(
-          `http://20.70.34.47/api/Retailer/updateDisputeReason/${returnId}?userDisputeReason=${text}`,
+          `http://20.70.34.47/api/Retailer/updateDisputeReason/${returnId}?userDisputeReason=${dispute}`,
           {
             method: "PUT",
             headers: {
@@ -41,7 +55,6 @@ const DisputeScreen = ({ navigation, route }: DisputeProps) => {
           }
         )
           .then(response => response.status)
-          .then()
           .catch((e) => console.log(e));
       }}>
         Submit Dispute

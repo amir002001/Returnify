@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace returnify_api.Services
 {
-    public class ClientService
+    public class ClientService:IClientService
     {
 
         private readonly DataContext _context;
@@ -25,9 +25,6 @@ namespace returnify_api.Services
                     .Include(u => u.Orders).ThenInclude(o => o.Retailer).FirstAsync();
             var orders = loggedInUser.Orders.Where(o => o.Client.Id.Equals(new Guid(clientId))).ToList();
             return orders;
-            
-            //return await _context.TrainingModules.ToListAsync();
-
         }
 
         public async Task<Order> GetOrderByIdFromDb(string orderId)

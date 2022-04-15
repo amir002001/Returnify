@@ -12,7 +12,6 @@ import {
 import { OrderDetailsProps } from "../NavigationTypes";
 
 //Author: Mike
-
 const ProductDetailsScreen = ({ navigation, route }: OrderDetailsProps) => {
   const [visible, setVisible] = useState(false);
   const [orderNumber, setOrderNumber] = useState("12345");
@@ -23,6 +22,7 @@ const ProductDetailsScreen = ({ navigation, route }: OrderDetailsProps) => {
 
   return (
     <View>
+
         <Title style={{ margin: 5, marginTop: 15, marginLeft: 15}}>Order Summary</Title>
         <View>
 
@@ -47,6 +47,7 @@ const ProductDetailsScreen = ({ navigation, route }: OrderDetailsProps) => {
             </View>
             <Title style={{ margin: 5, marginTop: 15, marginLeft: 15}}>Items:</Title>
 
+            <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, height: '100%'}}>
 
             {items.length !== 0 ? (
             items.map((value: any, index: any) => {
@@ -71,6 +72,7 @@ const ProductDetailsScreen = ({ navigation, route }: OrderDetailsProps) => {
             })
           ) : (<Text>Loading...</Text>)}
             <Button style={{padding: 20}}>Make a Return</Button>
+            </ScrollView>
         </View>
     </View>
   );
